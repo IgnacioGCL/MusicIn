@@ -1,6 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +12,21 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+ion-navbar {
+  .toolbar-background {
+    background-color: #ff2a25;
+  }
+  ion-title {
+    .toolbar-title {
+      color: #ffffff;
+    }
+  }
+}
+
+.tab-button[aria-selected=true] .tab-button-icon {
+  color: #e83916 !important;
+}
+
+.tab-button[aria-selected=true] .tab-button-text {
+  color: #e83916 !important;
+}
