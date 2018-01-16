@@ -18,7 +18,8 @@ export class MessagesProvider {
     let messageTest: MessageInfo = {
       photoUrl: 'https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png',
       name: 'Marty',
-      text: 'El otro día escuché un concierto de David Gilmour y me encantó'
+      text: 'El otro día escuché un concierto de David Gilmour y me encantó',
+      role: 'Músico'
     };
     let res: MessageInfo[] = [];
     return new Observable(observer => {
@@ -34,5 +35,6 @@ export class MessagesProvider {
 export class MessageInfo{
   photoUrl: string;
   name: string;
+  role: string;
   text: string;
 }

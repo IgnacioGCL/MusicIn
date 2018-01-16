@@ -1,13 +1,18 @@
 write-message {
-    .background{
-        background-color: #ffffff;
-        height: 100%;
-        ion-item{
-            height: 80%;
-        }
+  .background {
+    background-color: #ffffff;
+    height: 100%;
+    ion-item {
+      height: 80%;
     }
-    .close-button-div{
-        width: 100%;
-        text-align: right;
+  }
+  .close-button-div {
+    width: 100%;
+    text-align: right;
+  }
+  ion-item {
+    .item-inner {
+      border-bottom: 0 !important;
     }
+  }
 }
