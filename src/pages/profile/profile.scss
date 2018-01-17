@@ -1,3 +1,38 @@
 page-profile {
-
+  .profile-info {
+    ion-item {
+      .item-inner {
+        border-bottom: 0 !important;
+      }
+      ion-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          height: 100px !important;
+          width: 100px !important;
+        }
+      }
+    }
+    .text-info {
+      width: 100%;
+      text-align: center;
+    }
+    span {
+      font-weight: bold;
+    }
+    .messages-title {
+      text-align: center;
+      border-top: 1px solid rgba(0, 0, 0, 0.12);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+      h3 {
+        margin: 10px 0;
+      }
+    }
+  }
+  button{
+      span{
+          color: #ff2a25;
+      }
+  }
 }

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { MessagesProvider, MessageInfo } from '../../providers/messages/messages';
 
 /**
  * Generated class for the ProfilePage page.
@@ -13,12 +13,13 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'profile.html',
 })
 export class ProfilePage {
+  messages: MessageInfo[];
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private messageProvider: MessagesProvider) {
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ProfilePage');
+    this.messageProvider.getMessages().subscribe(messages => this.messages = messages);
   }
 
 }

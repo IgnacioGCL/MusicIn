@@ -12,21 +12,69 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+@font-face {
+  font-family: 'Avenir Black';
+  src: url(../assets/fonts/AvenirLTStd-Black.otf);
+}
+
+@font-face {
+  font-family: 'Avenir Book';
+  src: url(../assets/fonts/AvenirLTStd-Book.otf);
+}
+
+@font-face {
+  font-family: 'Avenir Light';
+  src: url(../assets/fonts/AvenirLTStd-Light.otf);
+}
+ 
+@font-face {
+  font-family: 'Avenir Medium';
+  src: url(../assets/fonts/AvenirLTStd-Medium.otf);
+}
+
+@font-face {
+  font-family: 'Avenir Roman';
+  src: url(../assets/fonts/AvenirLTStd-Roman.otf);
+}
+
+*{
+  font-family: 'Avenir Book';
+}
+
+.bg-color--primary {
+  background-color: color($colors, primary);
+}
+
+
 ion-navbar {
   .toolbar-background {
-    background-color: #ff2a25;
+    background-color: #ffffff;
   }
   ion-title {
     .toolbar-title {
-      color: #ffffff;
+      font-family: 'Avenir-black';
+      color: #000000;
     }
+  }
+}
+ion-tabs{
+  .tabbar{
+    background-color: #B20C08 !important;
   }
 }
 
 .tab-button[aria-selected=true] .tab-button-icon {
-  color: #e83916 !important;
+  color: #fff !important;
 }
 
 .tab-button[aria-selected=true] .tab-button-text {
-  color: #e83916 !important;
+  color: #fff !important;
+}
+
+.tab-button[aria-selected=false] .tab-button-icon {
+  color: #fff !important;
+}
+
+.tab-button[aria-selected=false] .tab-button-text {
+  color: #fff !important;
 }

@@ -13,6 +13,53 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content no-bounce>
+  <div class="profile-info">
+    <ion-item>
+      <ion-avatar>
+        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
+      </ion-avatar>
+    </ion-item>
+    <div class="text-info">
+      <p style="margin-top: 0;">
+        <span>Rol: </span>Músico</p>
+      <p>
+        <span>Instrumento: </span>Guitarra</p>
+      <p>
+        <span>Correo: </span>martymcfly@gmail.com</p>
+    </div>
+    <div class="messages-title">
+      <h3>Mensajes</h3>
+    </div>
+  </div>
+  <ion-card *ngFor="let message of messages">
 
+    <!-- Message -->
+    <ion-card-content>
+      <p>{{message.text}}</p>
+    </ion-card-content>
+
+    <!-- Icons -->
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comentarios</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <button disabled ion-button icon-left clear small>
+          <ion-icon name="time"></ion-icon>
+          <div>11h</div>
+        </button>
+      </ion-col>
+    </ion-row>
+
+  </ion-card>
 </ion-content>

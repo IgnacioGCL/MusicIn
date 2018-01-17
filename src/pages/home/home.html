@@ -10,7 +10,7 @@
 </ion-header>
 
 <ion-content no-bounce>
-  <ion-searchbar></ion-searchbar>
+  <ion-searchbar placeholder="Buscar amigos..."></ion-searchbar>
   <ion-card *ngFor="let message of messages">
 
     <!-- Profile info -->
@@ -22,9 +22,32 @@
       <p>{{message.role}}</p>
     </ion-item>
 
+
+    <!-- Message -->
     <ion-card-content>
       <p>{{message.text}}</p>
     </ion-card-content>
 
+    <!-- Icons -->
+    <ion-row>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="thumbs-up"></ion-icon>
+          <div>12</div>
+        </button>
+      </ion-col>
+      <ion-col>
+        <button ion-button icon-left clear small>
+          <ion-icon name="text"></ion-icon>
+          <div>4 Comentarios</div>
+        </button>
+      </ion-col>
+      <ion-col center text-center>
+        <button disabled ion-button icon-left clear small>
+          <ion-icon name="time"></ion-icon>
+          <div>11h</div>
+        </button>
+      </ion-col>
+    </ion-row>
   </ion-card>
 </ion-content>
