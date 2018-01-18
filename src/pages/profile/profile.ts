@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { MessagesProvider, MessageInfo } from '../../providers/messages/messages';
+import { MessagesProvider } from '../../providers/messages/messages';
+import { ProfileProvider } from '../../providers/profile/profile';
+import { UserInfo, MessageInfo } from '../../models/models';
 
 /**
  * Generated class for the ProfilePage page.
@@ -14,11 +16,19 @@ import { MessagesProvider, MessageInfo } from '../../providers/messages/messages
 })
 export class ProfilePage {
   messages: MessageInfo[];
+  profileInfo: UserInfo;
 
-  constructor(private messageProvider: MessagesProvider) {
+  constructor(private messageProvider: MessagesProvider, private profileProvider: ProfileProvider) {
+    this.profileInfo = {
+      name: '...',
+      email: '...',
+      photoUrl: 'assets/imgs/electric-guitar.png',
+      role: '...'
+    }
   }
 
   ionViewDidLoad() {
+    this.profileProvider.getProfileInfo().then(profileInfo => this.profileInfo = profileInfo);
     this.messageProvider.getMessages().subscribe(messages => this.messages = messages);
   }
 

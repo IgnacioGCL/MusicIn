@@ -1,5 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import { AngularFireDatabase } from 'angularfire2/database';
+import { MessageInfo } from '../../models/models';
 
 /*
   Generated class for the MessagesProvider provider.
@@ -10,7 +12,7 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class MessagesProvider {
 
-  constructor() {
+  constructor(private db: AngularFireDatabase) {
 
   }
 
@@ -30,11 +32,4 @@ export class MessagesProvider {
     });
   }
 
-}
-
-export class MessageInfo{
-  photoUrl: string;
-  name: string;
-  role: string;
-  text: string;
 }

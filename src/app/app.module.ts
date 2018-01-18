@@ -3,6 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -12,6 +15,11 @@ import { OffersPage } from '../pages/offers/offers';
 import { EventsPage } from '../pages/events/events';
 import { MessagesProvider } from '../providers/messages/messages';
 import { WriteMessageComponent } from '../components/write-message/write-message';
+import { environment } from '../environments/environment';
+import { ProfileProvider } from '../providers/profile/profile';
+
+import 'rxjs/add/operator/toPromise';
+import 'rxjs/add/operator/first';
 
 @NgModule({
   declarations: [
@@ -25,7 +33,10 @@ import { WriteMessageComponent } from '../components/write-message/write-message
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp)
+    IonicModule.forRoot(MyApp),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -41,7 +52,9 @@ import { WriteMessageComponent } from '../components/write-message/write-message
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    MessagesProvider
+    MessagesProvider,
+    ProfileProvider,
+    AngularFireDatabase
   ]
 })
 export class AppModule { }

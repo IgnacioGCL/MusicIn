@@ -17,16 +17,27 @@
   <div class="profile-info">
     <ion-item>
       <ion-avatar>
-        <img src="https://ionicframework.com/dist/preview-app/www/assets/img/marty-avatar.png">
+        <img src="{{profileInfo.photoUrl}}">
       </ion-avatar>
     </ion-item>
     <div class="text-info">
-      <p style="margin-top: 0;">
-        <span>Rol: </span>Músico</p>
-      <p>
-        <span>Instrumento: </span>Guitarra</p>
-      <p>
-        <span>Correo: </span>martymcfly@gmail.com</p>
+      <div class="user-info-specs" style="margin-top: 0;">
+        <span>Nombre: </span>
+        <p>{{profileInfo.name}}</p>
+      </div>
+      <div class="user-info-specs">
+        <span>Rol: </span>
+        <p *ngIf="profileInfo.role == 'musician'">Músico</p>
+        <p *ngIf="profileInfo.role == 'promotor'">Promotor</p>
+      </div>
+      <div class="user-info-specs">
+        <span>Instrumento: </span>
+        <p>Guitarra</p>
+      </div>
+      <div class="user-info-specs">
+        <span>Correo: </span>
+        <p>{{profileInfo.email}}</p>
+      </div>
     </div>
     <div class="messages-title">
       <h3>Mensajes</h3>
