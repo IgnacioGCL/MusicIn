@@ -1,3 +1,24 @@
 page-events {
-
+  .black {
+    color: #000000;
+  }
+  ion-avatar {
+    img {
+      border-radius: 0 !important;
+      width: 50px !important;
+      height: 50px !important;
+    }
+  }
+  .two-wrapper {
+    * {
+      display: block;
+    }
+    button {
+        float: right;
+      * {
+        display: inline;
+        color: black;
+      }
+    }
+  }
 }

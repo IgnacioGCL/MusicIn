@@ -7,12 +7,37 @@
 <ion-header>
 
   <ion-navbar>
+    <ion-buttons>
+      <button ion-button icon-only>
+        <ion-icon class="black" name="map"></ion-icon>
+      </button>
+    </ion-buttons>
     <ion-title>Eventos</ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only>
+        <ion-icon class="black" name="add"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-
+<ion-content no-bounce>
+  <ion-list>
+    <ion-card (tap)="seeEventDetails()">
+      <ion-item>
+        <ion-avatar item-start>
+          <img src="http://www.galdar.es/wp-content/uploads/2017/12/gofiones.jpg" />
+        </ion-avatar>
+        <div class="two-wrapper">
+          Concierto los Gofiones
+          <button disabled ion-button icon-left clear small>
+            <ion-icon name="calendar"></ion-icon>
+            <div>10/12/2018</div>
+          </button>
+        </div>
+      </ion-item>
+    </ion-card>
+  </ion-list>
 </ion-content>

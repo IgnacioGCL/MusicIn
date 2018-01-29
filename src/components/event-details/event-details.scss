@@ -1,0 +1,49 @@
+event-details {
+    height: 100vh;
+    widows: 100%;
+    background-color: #ffffff;
+
+    .image-container{
+        height: 250px;
+        width: 100%;
+        background-image: url('http://www.galdar.es/wp-content/uploads/2017/12/gofiones.jpg');
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
+
+    .place-info{
+        margin-top: 40px;
+    }
+
+    .event-info{
+        height: calc(100vh - 250px);
+        width: 100%;
+    }
+
+    .description-info{
+        p{
+            text-align: justify;
+        }
+    }
+
+    .more-info{
+        padding: 10px 20px;
+        span{
+            font-weight: bold;
+        }
+        *{
+            display: inline;
+        }
+    }
+    
+    .button-container{
+        border-radius: 0;
+        margin-top: 60px;
+        width: 100%;
+        text-align: center;
+        button{
+            background-color: $red !important;
+        }
+    }
+}

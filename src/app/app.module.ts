@@ -20,6 +20,7 @@ import { ProfileProvider } from '../providers/profile/profile';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/first';
+import { EventDetailsComponent } from '../components/event-details/event-details';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import 'rxjs/add/operator/first';
     ProfilePage,
     OffersPage,
     EventsPage,
-    WriteMessageComponent
+    WriteMessageComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +48,8 @@ import 'rxjs/add/operator/first';
     ProfilePage,
     OffersPage,
     EventsPage,
-    WriteMessageComponent
+    WriteMessageComponent,
+    EventDetailsComponent
   ],
   providers: [
     StatusBar,

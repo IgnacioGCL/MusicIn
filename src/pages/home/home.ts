@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { MessagesProvider, MessageInfo } from '../../providers/messages/messages';
+import { MessagesProvider } from '../../providers/messages/messages';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { WriteMessageComponent } from '../../components/write-message/write-message';
+import { MessageInfo } from '../../models/models';
 
 @Component({
   selector: 'page-home',
@@ -14,11 +15,11 @@ export class HomePage {
 
   }
 
-  ionViewDidLoad(){
+  ionViewDidLoad() {
     this.messageProvider.getMessages().subscribe(messages => this.messages = messages);
   }
 
-  goToWritePost(){
+  goToWritePost() {
     this.modalCtrl.create(WriteMessageComponent).present();
   }
 
