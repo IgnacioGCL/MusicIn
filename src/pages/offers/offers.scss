@@ -1,3 +1,16 @@
 page-offers {
-
+  .black {
+    color: #000000;
+  }
+  .two-wrapper {
+    text-align: justify;
+    white-space: normal;
+  }
+  ion-avatar {
+    img {
+      border-radius: 0 !important;
+      width: 50px !important;
+      height: 50px !important;
+    }
+  }
 }

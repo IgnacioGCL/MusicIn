@@ -21,6 +21,7 @@ import { ProfileProvider } from '../providers/profile/profile';
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/first';
 import { EventDetailsComponent } from '../components/event-details/event-details';
+import { OfferDetailsComponent } from '../components/offer-details/offer-details';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { EventDetailsComponent } from '../components/event-details/event-details
     OffersPage,
     EventsPage,
     WriteMessageComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    OfferDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -49,7 +51,8 @@ import { EventDetailsComponent } from '../components/event-details/event-details
     OffersPage,
     EventsPage,
     WriteMessageComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    OfferDetailsComponent
   ],
   providers: [
     StatusBar,

@@ -10,11 +10,12 @@ page-events {
     }
   }
   .two-wrapper {
+    white-space: normal;
     * {
       display: block;
     }
     button {
-        float: right;
+      float: right;
       * {
         display: inline;
         color: black;

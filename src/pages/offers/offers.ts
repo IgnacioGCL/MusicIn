@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
+import { OfferDetailsComponent } from '../../components/offer-details/offer-details';
 
 /**
  * Generated class for the OffersPage page.
@@ -14,11 +15,11 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class OffersPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(private modalCtrl: ModalController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OffersPage');
+  seeOfferDetails(){
+    this.modalCtrl.create(OfferDetailsComponent).present();
   }
 
 }
