@@ -31,7 +31,7 @@
       <p>{{message.text}}</p>
     </ion-card-content>
     <div class="youtube-container" *ngIf="message.youtubeUrl">
-      <iframe [src]="message.youtubeUrl | youtube" frameborder="0"></iframe>
+      <iframe [src]="message.youtubeUrl | youtube" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <!-- Icons -->

@@ -39,9 +39,6 @@
         <p>{{profileInfo.email}}</p>
       </div>
     </div>
-    <div class="messages-title">
-      <h3>Mensajes</h3>
-    </div>
   </div>
   <ion-card *ngFor="let message of messages">
 
@@ -50,7 +47,7 @@
       <p>{{message.text}}</p>
     </ion-card-content>
     <div class="youtube-container" *ngIf="message.youtubeUrl">
-      <iframe [src]="message.youtubeUrl | youtube" frameborder="0"></iframe>
+      <iframe [src]="message.youtubeUrl | youtube" frameborder="0" allowfullscreen></iframe>
     </div>
 
     <!-- Icons -->
