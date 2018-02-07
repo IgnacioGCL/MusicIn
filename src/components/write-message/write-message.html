@@ -6,7 +6,7 @@
     </button>
   </div>
   <ion-item>
-    <ion-textarea placeholder="Escriba su mensaje..."></ion-textarea>
+    <ion-textarea placeholder="Escriba su mensaje..." [(ngModel)]="message"></ion-textarea>
   </ion-item>
-  <button ion-button full>Enviar</button>
+  <button [disabled]="disabled" class="send-button" ion-button full (tap)="sendMessage(this)">Enviar</button>
 </div>

@@ -7,4 +7,25 @@ page-home {
       color: #ff2a25;
     }
   }
+  
+  .no-messages-container {
+    height: calc(100% - 45px);
+    display: flex;
+    justify-content: center;
+    align-items: center;  
+    p {
+      opacity: 0.5;
+    }
+  }
+
+  .youtube-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    iframe{
+      min-height: 200px;
+      width: 100%;
+    }
+  }
 }

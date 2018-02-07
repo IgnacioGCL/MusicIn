@@ -41,4 +41,17 @@ page-profile {
           color: #ff2a25;
       }
   }
+
+  
+
+  .youtube-container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    iframe{
+      min-height: 200px;
+      width: 100%;
+    }
+  }
 }

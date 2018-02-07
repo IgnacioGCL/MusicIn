@@ -49,28 +49,32 @@
     <ion-card-content>
       <p>{{message.text}}</p>
     </ion-card-content>
+    <div class="youtube-container" *ngIf="message.youtubeUrl">
+      <iframe [src]="message.youtubeUrl | youtube" frameborder="0"></iframe>
+    </div>
 
     <!-- Icons -->
-    <ion-row>
-      <ion-col>
-        <button ion-button icon-left clear small>
-          <ion-icon name="thumbs-up"></ion-icon>
-          <div>12</div>
-        </button>
-      </ion-col>
-      <ion-col>
-        <button ion-button icon-left clear small>
-          <ion-icon name="text"></ion-icon>
-          <div>4 Comentarios</div>
-        </button>
-      </ion-col>
-      <ion-col center text-center>
-        <button disabled ion-button icon-left clear small>
-          <ion-icon name="time"></ion-icon>
-          <div>11h</div>
-        </button>
-      </ion-col>
-    </ion-row>
-
+    <ion-grid>
+      <ion-row>
+        <ion-col col-3>
+          <button ion-button icon-left clear small>
+            <ion-icon name="thumbs-up"></ion-icon>
+            <div>{{message.likes}}</div>
+          </button>
+        </ion-col>
+        <ion-col col-3>
+          <button ion-button icon-left clear small>
+            <ion-icon name="text"></ion-icon>
+            <div>{{message.comments}}</div>
+          </button>
+        </ion-col>
+        <ion-col col-6 center text-center>
+          <button disabled ion-button icon-left clear small>
+            <ion-icon name="time"></ion-icon>
+            <div>{{message.date | amTimeAgo}}</div>
+          </button>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-card>
 </ion-content>

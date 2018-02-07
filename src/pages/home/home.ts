@@ -12,7 +12,7 @@ export class HomePage {
 
   messages: MessageInfo[];
   constructor(private messageProvider: MessagesProvider, private modalCtrl: ModalController) {
-
+    this.messages = [];
   }
 
   ionViewDidLoad() {
@@ -21,6 +21,10 @@ export class HomePage {
 
   goToWritePost() {
     this.modalCtrl.create(WriteMessageComponent).present();
+  }
+
+  trackById(index, item) {
+    return item.id;
   }
 
 }

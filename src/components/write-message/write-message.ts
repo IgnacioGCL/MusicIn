@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { ToastProvider } from '../../providers/toast/toast';
+import { MessagesProvider } from '../../providers/messages/messages';
 
 /**
  * Generated class for the WriteMessageComponent component.
@@ -13,14 +15,36 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 })
 export class WriteMessageComponent {
 
-  text: string;
+  message: string;
+  disabled: boolean;
 
-  constructor(private viewCtrl: ViewController) {
-  
+  constructor(private viewCtrl: ViewController, private toast: ToastProvider, private messagesProvider: MessagesProvider) {
+    this.message = '';
+    this.disabled = false;
   }
 
-  closeModal(){
+  closeModal() {
     this.viewCtrl.dismiss();
+  }
+
+  sendMessage() {
+    if (this.message.length < 5) {
+      this.toast.messageTooShort();
+    } else {
+      this.disabled = true;
+      this.messagesProvider.writeMessage(this.message)
+        .then(() => {
+          this.toast.messageWritten();
+          setTimeout(() => {
+            this.viewCtrl.dismiss();
+          }, 1000);
+        })
+        .catch(err => {
+          console.log(err);
+          this.disabled = false;
+          this.toast.errorInMessage();
+        })
+    }
   }
 
 }

@@ -1,4 +1,5 @@
 export interface UserInfo {
+    id: string;
     name: string;
     role: string;
     email: string;
@@ -10,4 +11,9 @@ export interface MessageInfo {
     name: string;
     role: string;
     text: string;
+    id: string;
+    youtubeUrl?: string;
+    comments: number;
+    likes: number;
+    date: number;
 }

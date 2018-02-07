@@ -20,6 +20,7 @@ export class ProfilePage {
 
   constructor(private messageProvider: MessagesProvider, private profileProvider: ProfileProvider) {
     this.profileInfo = {
+      id: '',
       name: '...',
       email: '...',
       photoUrl: 'assets/imgs/electric-guitar.png',
@@ -28,7 +29,7 @@ export class ProfilePage {
   }
 
   ionViewDidLoad() {
-    this.profileProvider.getProfileInfo().then(profileInfo => this.profileInfo = profileInfo);
+    this.profileInfo = this.profileProvider.getProfileInfo();
     this.messageProvider.getMessages().subscribe(messages => this.messages = messages);
   }
 
