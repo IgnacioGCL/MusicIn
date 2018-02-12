@@ -32,6 +32,7 @@ import { YoutubePipe } from '../pipes/youtube/youtube';
 import { ChatsPage } from '../pages/chats/chats';
 import { CreateEventComponent } from '../components/create-event/create-event';
 import { CreateOfferComponent } from '../components/create-offer/create-offer';
+import { EventsProvider } from '../providers/events/events';
 
 locale('es-es');
 
@@ -84,7 +85,8 @@ locale('es-es');
     AngularFireDatabase,
     ToastProvider,
     Camera,
-    DatePicker
+    DatePicker,
+    EventsProvider
   ]
 })
 export class AppModule { }

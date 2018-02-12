@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
+import { NavParams } from 'ionic-angular';
 
 /**
  * Generated class for the EventDetailsComponent component.
@@ -13,8 +14,11 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 })
 export class EventDetailsComponent {
 
+  event: Event;
 
-  constructor(private viewCtrl: ViewController) {}
+  constructor(private viewCtrl: ViewController, private params: NavParams) {
+    this.event = params.get('event');
+  }
 
   closeInfo(){
     this.viewCtrl.dismiss();

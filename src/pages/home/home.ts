@@ -11,6 +11,7 @@ import { MessageInfo } from '../../models/models';
 export class HomePage {
 
   messages: MessageInfo[];
+  
   constructor(private messageProvider: MessagesProvider, private modalCtrl: ModalController) {
     this.messages = [];
   }

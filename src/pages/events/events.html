@@ -24,17 +24,17 @@
 
 
 <ion-content no-bounce>
-  <ion-list>
-    <ion-card (tap)="seeEventDetails()">
+  <ion-list *ngFor="let event of events; trackBy: trackById">
+    <ion-card (tap)="seeEventDetails(event)">
       <ion-item>
         <ion-avatar item-start>
-          <img src="http://www.galdar.es/wp-content/uploads/2017/12/gofiones.jpg" />
+          <img [src]="event.imageUrl" />
         </ion-avatar>
         <div class="two-wrapper">
-          Concierto los Gofiones
+          {{event.title}}
           <button disabled ion-button icon-left clear small>
             <ion-icon name="calendar"></ion-icon>
-            <div>10/12/2018</div>
+            <div>{{event.date | amDateFormat: 'DD-MM-YYYY'}}</div>
           </button>
         </div>
       </ion-item>

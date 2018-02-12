@@ -1,20 +1,19 @@
 <!-- Generated template for the EventDetailsComponent component -->
 <div>
-  <div class="image-container">
+  <div class="image-container" [ngStyle]="{'background-image': 'url(' + event.imageUrl + ')'}">
   </div>
   <div class="event-info">
     <div class="place-info more-info">
       <span>Lugar: </span>
-      <p>Plaza de la música</p>
+      <p>{{event.location}}</p>
     </div>
     <div class="date-info more-info">
       <span>Fecha: </span>
-      <p>10/12/2018</p>
+      <p>{{event.date | amDateFormat: 'DD-MM-YYYY'}}</p>
     </div>
     <div class="description-info more-info">
       <span>Descripción: </span>
-      <p>El concierto de los gofiones que se celebra por estas fechas todos los años, rememora nuestra música y nuestras raíces.
-        Un concierto para toda la familia que no se pueden perder</p>
+      <p>{{event.description}}</p>
     </div>
     <div class="button-container">
       <button ion-button full (tap)="closeInfo()">Ok</button>
