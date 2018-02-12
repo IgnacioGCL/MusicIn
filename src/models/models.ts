@@ -17,3 +17,11 @@ export interface MessageInfo {
     likes: number;
     date: number;
 }
+
+export interface Event {
+    title: string;
+    description: string;
+    location: string;
+    date: number;
+    image: string;
+}

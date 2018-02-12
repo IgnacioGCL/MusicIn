@@ -1,0 +1,43 @@
+<!-- Generated template for the CreateEventComponent component -->
+<ion-content class="positions-absolute">
+  <div class="close-button-div">
+    <button class="close-button" (tap)="closePage()" ion-button icon-only clear>
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </div>
+  <form (ngSubmit)="createEvent()" #eventForm="ngForm">
+    <div class="img-container" (tap)="selectImage()" [ngStyle]="{'background-image': 'url(' + imageSrc + ')'}">
+      <img *ngIf="!imageUploaded" src="assets/imgs/upload_image.png" />
+    </div>
+    <div class="create-title">
+      <p>Información del evento:</p>
+    </div>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-create"></ion-icon>
+      </ion-label>
+      <ion-input required [(ngModel)]="event.title" name="title" placeholder="Título"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-pin"></ion-icon>
+      </ion-label>
+      <ion-input required [(ngModel)]="event.location" name="location" placeholder="Dirección"></ion-input>
+    </ion-item>
+    <ion-item (tap)="chooseDate()">
+      <ion-label>
+        <ion-icon name="md-calendar"></ion-icon>
+      </ion-label>
+      <ion-input required [(ngModel)]="dateString" name="dateString" class="date-input" placeholder="Fecha"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-create"></ion-icon>
+      </ion-label>
+      <ion-textarea required [(ngModel)]="event.description" name="description" placeholder="Descripción"></ion-textarea>
+    </ion-item>
+    <button [disabled]="!eventForm.form.valid || (event.image.length == 0)" type="submit" ion-button full class="button-blue">
+      Crear evento
+    </button>
+  </form>
+</ion-content>

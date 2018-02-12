@@ -36,4 +36,12 @@ export class ToastProvider {
     }).present();
   }
 
+  public eventCreated(){
+    return this.toastCtrl.create({
+      message: 'Evento creado con éxito',
+      duration: 2000,
+      position: 'bottom'
+    }).present();
+  }
+
 }

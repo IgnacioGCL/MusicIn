@@ -1,13 +1,8 @@
 import { Component } from '@angular/core';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { EventDetailsComponent } from '../../components/event-details/event-details';
-
-/**
- * Generated class for the EventsPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { CreateEventComponent } from '../../components/create-event/create-event';
+import { NavController } from 'ionic-angular';
 
 @Component({
   selector: 'page-events',
@@ -15,10 +10,14 @@ import { EventDetailsComponent } from '../../components/event-details/event-deta
 })
 export class EventsPage {
 
-  constructor(private modalCtrl: ModalController) {}
+  constructor(private modalCtrl: ModalController, private navCtrl: NavController) { }
 
-  seeEventDetails(){
+  seeEventDetails() {
     this.modalCtrl.create(EventDetailsComponent).present();
+  }
+
+  createEvent() {
+    this.navCtrl.push(CreateEventComponent);
   }
 
 }

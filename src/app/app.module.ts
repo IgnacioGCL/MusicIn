@@ -2,9 +2,12 @@ import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Camera } from '@ionic-native/camera';
+import { DatePicker } from '@ionic-native/date-picker';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { AngularFireStorageModule } from 'angularfire2/storage';
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { MomentModule } from 'angular2-moment';
 import { locale } from 'moment';
@@ -26,6 +29,9 @@ import 'rxjs/add/operator/first';
 import { EventDetailsComponent } from '../components/event-details/event-details';
 import { OfferDetailsComponent } from '../components/offer-details/offer-details';
 import { YoutubePipe } from '../pipes/youtube/youtube';
+import { ChatsPage } from '../pages/chats/chats';
+import { CreateEventComponent } from '../components/create-event/create-event';
+import { CreateOfferComponent } from '../components/create-offer/create-offer';
 
 locale('es-es');
 
@@ -40,14 +46,18 @@ locale('es-es');
     WriteMessageComponent,
     EventDetailsComponent,
     OfferDetailsComponent,
-    YoutubePipe
+    CreateEventComponent,
+    CreateOfferComponent,
+    YoutubePipe,
+    ChatsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, { mode: 'ios' }),
+    IonicModule.forRoot(MyApp, { mode: 'ios', tabsHideOnSubPages: true }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
+    AngularFireStorageModule,
     MomentModule
   ],
   bootstrap: [IonicApp],
@@ -60,7 +70,10 @@ locale('es-es');
     EventsPage,
     WriteMessageComponent,
     EventDetailsComponent,
-    OfferDetailsComponent
+    OfferDetailsComponent,
+    CreateEventComponent,
+    CreateOfferComponent,
+    ChatsPage
   ],
   providers: [
     StatusBar,
@@ -69,7 +82,9 @@ locale('es-es');
     MessagesProvider,
     ProfileProvider,
     AngularFireDatabase,
-    ToastProvider
+    ToastProvider,
+    Camera,
+    DatePicker
   ]
 })
 export class AppModule { }
