@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { MessagesProvider } from '../../providers/messages/messages';
-import { ModalController } from 'ionic-angular/components/modal/modal-controller';
-import { WriteMessageComponent } from '../../components/write-message/write-message';
+import { IonicPage, ModalController } from 'ionic-angular';
 import { MessageInfo } from '../../models/models';
 
+@IonicPage({
+  name: 'home'
+})
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
@@ -11,7 +13,7 @@ import { MessageInfo } from '../../models/models';
 export class HomePage {
 
   messages: MessageInfo[];
-  
+
   constructor(private messageProvider: MessagesProvider, private modalCtrl: ModalController) {
     this.messages = [];
   }
@@ -21,7 +23,7 @@ export class HomePage {
   }
 
   goToWritePost() {
-    this.modalCtrl.create(WriteMessageComponent).present();
+    this.modalCtrl.create('write-message').present();
   }
 
   trackById(index, item) {

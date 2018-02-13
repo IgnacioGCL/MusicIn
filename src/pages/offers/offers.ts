@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
-import { OfferDetailsComponent } from '../../components/offer-details/offer-details';
+import { ModalController, IonicPage } from 'ionic-angular';
 
 /**
  * Generated class for the OffersPage page.
@@ -9,6 +8,9 @@ import { OfferDetailsComponent } from '../../components/offer-details/offer-deta
  * Ionic pages and navigation.
  */
 
+@IonicPage({
+  name: 'offers'
+})
 @Component({
   selector: 'page-offers',
   templateUrl: 'offers.html',
@@ -19,7 +21,7 @@ export class OffersPage {
   }
 
   seeOfferDetails(){
-    this.modalCtrl.create(OfferDetailsComponent).present();
+    this.modalCtrl.create('offer-details').present();
   }
 
 }

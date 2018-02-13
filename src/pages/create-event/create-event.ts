@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ActionSheetController, NavController, LoadingController, Loading } from 'ionic-angular';
+import { ActionSheetController, NavController, LoadingController, Loading, IonicPage } from 'ionic-angular';
 import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DatePicker } from '@ionic-native/date-picker';
 import { AngularFireStorage } from 'angularfire2/storage';
@@ -8,6 +8,9 @@ import { Event } from '../../models/models';
 import { ToastProvider } from '../../providers/toast/toast';
 
 
+@IonicPage({
+  name: 'create-event'
+})
 @Component({
   selector: 'create-event',
   templateUrl: 'create-event.html'

@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { MessagesProvider } from '../../providers/messages/messages';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { UserInfo, MessageInfo } from '../../models/models';
+import { IonicPage } from 'ionic-angular';
 
-/**
- * Generated class for the ProfilePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
+
+@IonicPage({
+  name: 'profile'
+})
 @Component({
   selector: 'page-profile',
   templateUrl: 'profile.html',

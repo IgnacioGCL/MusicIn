@@ -2,13 +2,12 @@ import { Component } from '@angular/core';
 import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ToastProvider } from '../../providers/toast/toast';
 import { MessagesProvider } from '../../providers/messages/messages';
+import { IonicPage } from 'ionic-angular';
 
-/**
- * Generated class for the WriteMessageComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
+
+@IonicPage({
+  name: 'write-message'
+})
 @Component({
   selector: 'write-message',
   templateUrl: 'write-message.html'

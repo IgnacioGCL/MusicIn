@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
 
 /**
  * Generated class for the CreateOfferComponent component.
@@ -6,6 +7,9 @@ import { Component } from '@angular/core';
  * See https://angular.io/api/core/Component for more info on Angular
  * Components.
  */
+@IonicPage({
+  name: 'create-offer'
+})
 @Component({
   selector: 'create-offer',
   templateUrl: 'create-offer.html'
