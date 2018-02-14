@@ -17,7 +17,7 @@ export class EventDetailsComponent {
   event: Event;
 
   constructor(private viewCtrl: ViewController, private params: NavParams) {
-    this.event = params.get('event');
+    this.event = this.params.get('event');
   }
 
   closeInfo(){

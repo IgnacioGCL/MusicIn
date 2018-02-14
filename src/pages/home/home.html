@@ -44,7 +44,7 @@
           </button>
         </ion-col>
         <ion-col col-3>
-          <button ion-button icon-left clear small>
+          <button ion-button icon-left clear small (tap)="goToComments(message.id, message.userId)">
             <ion-icon name="text"></ion-icon>
             <div>{{message.comments}}</div>
           </button>

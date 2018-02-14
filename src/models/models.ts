@@ -16,6 +16,15 @@ export interface MessageInfo {
     comments: number;
     likes: number;
     date: number;
+    userId: string;
+}
+
+export interface Comments {
+    userId: string;
+    name: string;
+    photoUrl: string;
+    message: string;
+    date: number;
 }
 
 export interface Event {

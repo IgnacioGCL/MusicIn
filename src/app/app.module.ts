@@ -26,6 +26,9 @@ import { ToastProvider } from '../providers/toast/toast';
 
 import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/first';
+import 'rxjs/add/observable/combineLatest';
+
+
 import { EventDetailsComponent } from '../components/event-details/event-details';
 import { OfferDetailsComponent } from '../components/offer-details/offer-details';
 import { YoutubePipe } from '../pipes/youtube/youtube';
@@ -33,6 +36,7 @@ import { ChatsPage } from '../pages/chats/chats';
 import { CreateEventComponent } from '../components/create-event/create-event';
 import { CreateOfferComponent } from '../components/create-offer/create-offer';
 import { EventsProvider } from '../providers/events/events';
+import { MessageCommentsPage } from '../pages/message-comments/message-comments';
 
 locale('es-es');
 
@@ -50,7 +54,8 @@ locale('es-es');
     CreateEventComponent,
     CreateOfferComponent,
     YoutubePipe,
-    ChatsPage
+    ChatsPage,
+    MessageCommentsPage
   ],
   imports: [
     BrowserModule,
@@ -74,7 +79,8 @@ locale('es-es');
     OfferDetailsComponent,
     CreateEventComponent,
     CreateOfferComponent,
-    ChatsPage
+    ChatsPage,
+    MessageCommentsPage
   ],
   providers: [
     StatusBar,
