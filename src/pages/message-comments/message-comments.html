@@ -13,7 +13,7 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content>
   <ion-card *ngFor="let comment of comments">
     <ion-item>
       <ion-avatar item-start>
@@ -28,3 +28,12 @@
     </ion-card-content>
   </ion-card>
 </ion-content>
+
+<ion-footer>
+  <ion-toolbar class="toolbar-input" keyboard-attach>
+    <input placeholder="Comentario" />
+    <div class="icon-wrapper">
+      <ion-icon name="md-send"></ion-icon>
+    </div>
+  </ion-toolbar>
+</ion-footer>
