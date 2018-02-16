@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { MessageInfo, UserInfo } from '../../models/models';
+import { MessageInfo } from '../../models/models';
 import { ProfileProvider } from '../profile/profile';
 import _ from 'lodash';
 
