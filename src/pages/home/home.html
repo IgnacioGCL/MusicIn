@@ -38,7 +38,7 @@
     <ion-grid>
       <ion-row>
         <ion-col col-3>
-          <button ion-button icon-left clear small>
+          <button ion-button icon-left clear small (tap)="modifyLike(message.id, message.userId, message.likes)">
             <ion-icon name="thumbs-up"></ion-icon>
             <div>{{message.likes}}</div>
           </button>

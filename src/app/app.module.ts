@@ -37,6 +37,7 @@ import { CreateEventComponent } from '../components/create-event/create-event';
 import { CreateOfferComponent } from '../components/create-offer/create-offer';
 import { EventsProvider } from '../providers/events/events';
 import { MessageCommentsPage } from '../pages/message-comments/message-comments';
+import { LikesProvider } from '../providers/likes/likes';
 
 locale('es-es');
 
@@ -92,7 +93,8 @@ locale('es-es');
     ToastProvider,
     Camera,
     DatePicker,
-    EventsProvider
+    EventsProvider,
+    LikesProvider
   ]
 })
 export class AppModule { }
