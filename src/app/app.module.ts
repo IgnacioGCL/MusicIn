@@ -38,6 +38,7 @@ import { CreateOfferComponent } from '../components/create-offer/create-offer';
 import { EventsProvider } from '../providers/events/events';
 import { MessageCommentsPage } from '../pages/message-comments/message-comments';
 import { LikesProvider } from '../providers/likes/likes';
+import { LikesPage } from '../pages/likes/likes';
 
 locale('es-es');
 
@@ -56,7 +57,8 @@ locale('es-es');
     CreateOfferComponent,
     YoutubePipe,
     ChatsPage,
-    MessageCommentsPage
+    MessageCommentsPage,
+    LikesPage
   ],
   imports: [
     BrowserModule,
@@ -81,7 +83,8 @@ locale('es-es');
     CreateEventComponent,
     CreateOfferComponent,
     ChatsPage,
-    MessageCommentsPage
+    MessageCommentsPage,
+    LikesPage
   ],
   providers: [
     StatusBar,

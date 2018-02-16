@@ -7,6 +7,7 @@ import { NavController } from 'ionic-angular';
 import { MessageCommentsPage } from '../message-comments/message-comments';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LikesProvider } from '../../providers/likes/likes';
+import { LikesPage } from '../likes/likes';
 
 @Component({
   selector: 'page-home',
@@ -46,6 +47,13 @@ export class HomePage {
 
   goToComments(messageId, userId) {
     this.navCtrl.push(MessageCommentsPage, {
+      userId: userId,
+      messageId: messageId
+    });
+  }
+
+  seeLikes(messageId, userId){
+    this.navCtrl.push(LikesPage, {
       userId: userId,
       messageId: messageId
     });

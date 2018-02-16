@@ -27,7 +27,7 @@
 
 
     <!-- Message -->
-    <ion-card-content>
+    <ion-card-content (tap)="seeLikes(message.id, message.userId)">
       <p>{{message.text}}</p>
     </ion-card-content>
     <div class="youtube-container" *ngIf="message.youtubeUrl">
