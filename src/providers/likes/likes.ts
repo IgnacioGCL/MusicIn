@@ -33,22 +33,26 @@ export class LikesProvider {
       });
   }
 
-  public getUsersWhoGaveLikes(messageId, userId): Observable<[{ name: string, photoUrl: string, userId: string }]> {
+  public getUsersWhoGaveLikes(messageId, userId): Observable<any> {
     let usersWhoGaveLikes;
     return new Observable(observer => {
       this.db.list(`users/${userId}/messages/${messageId}/likes`).valueChanges().subscribe(users => {
-        usersWhoGaveLikes = [];
-        users.forEach(user => {
-          this.db.object(`users/${userId}/profile/`).valueChanges().subscribe((userInfo: UserInfo) => {
-            const newUser = {
-              name: userInfo.name,
-              photoUrl: userInfo.photoUrl,
-              userId: userInfo.id
-            };
-            usersWhoGaveLikes.push(newUser);
-            observer.next(usersWhoGaveLikes);
+        if (users.length > 0) {
+          usersWhoGaveLikes = [];
+          users.forEach(user => {
+            this.db.object(`users/${userId}/profile/`).valueChanges().subscribe((userInfo: UserInfo) => {
+              const newUser = {
+                name: userInfo.name,
+                photoUrl: userInfo.photoUrl,
+                userId: userInfo.id
+              };
+              usersWhoGaveLikes.push(newUser);
+              observer.next(usersWhoGaveLikes);
+            });
           });
-        });
+        } else {
+          observer.next(null);
+        }
       });
     });
   }

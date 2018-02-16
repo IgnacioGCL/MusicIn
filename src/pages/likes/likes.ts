@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavParams } from 'ionic-angular';
+import { NavParams, LoadingController } from 'ionic-angular';
 import { LikesProvider } from '../../providers/likes/likes';
 
 /**
@@ -18,11 +18,24 @@ export class LikesPage {
   userId: string;
   messageId: string;
   users: any;
+  noUsers: boolean;
 
-  constructor(private navParams: NavParams, private likesProvider: LikesProvider) {
+  constructor(private navParams: NavParams, private likesProvider: LikesProvider, private loading: LoadingController) {
     this.userId = this.navParams.get('userId');
     this.messageId = this.navParams.get('messageId');
-    this.likesProvider.getUsersWhoGaveLikes(this.messageId, this.userId).subscribe(users => this.users = users);
+    let loader = this.loading.create({
+      content: 'Espere...'
+    });
+    loader.present();
+    this.likesProvider.getUsersWhoGaveLikes(this.messageId, this.userId).subscribe(users => {
+      if (users) {
+        this.users = users;
+        this.noUsers = false;
+      }else{
+        this.noUsers = true;
+      }
+      loader.dismiss();
+    });
   }
 
 

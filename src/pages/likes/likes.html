@@ -8,6 +8,9 @@
 
 
 <ion-content no-bounce>
+  <div class="no-likes" *ngIf="noUsers">
+    <p>Este mensaje no tiene likes</p>
+  </div>
   <ion-list>
     <ion-item *ngFor="let user of users">
       <ion-avatar item-start>
