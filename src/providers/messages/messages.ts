@@ -23,14 +23,18 @@ export class MessagesProvider {
         .valueChanges()
         .map(messages => messages.reverse())
         .subscribe(messages => {
-          let promises = [];
-          messages.forEach((message: any) => {
-            promises.push(this.db.object(`users/${message.userId}/messages/${message.messageId}/content`).valueChanges());
-          });
-          Observable.combineLatest(...promises).subscribe(messages => {
-            homeMessages = _.orderBy(messages, 'date', 'desc');
-            observer.next(homeMessages);
-          });
+          if (messages) {
+            let promises = [];
+            messages.forEach((message: any) => {
+              promises.push(this.db.object(`users/${message.userId}/messages/${message.messageId}/content`).valueChanges());
+            });
+            Observable.combineLatest(...promises).subscribe(messages => {
+              homeMessages = _.orderBy(messages, 'date', 'desc');
+              observer.next(homeMessages);
+            });
+          } else {
+            observer.next();
+          }
         });
     });
   }

@@ -11,7 +11,7 @@
 
 <ion-content no-bounce>
   <ion-searchbar placeholder="Buscar amigos..."></ion-searchbar>
-  <div class="no-messages-container" *ngIf="messages.length == 0">
+  <div class="no-messages-container" *ngIf="noMessages">
     <p>Todavía no tienes mensajes de amigos, ¡búscalos!</p>
   </div>
   <ion-card *ngFor="let message of messages; trackBy: trackById">
