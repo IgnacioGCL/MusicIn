@@ -30,6 +30,22 @@ export class ProfileProvider {
           email: profileInfo.email,
           photoUrl: profileInfo.photoUrl
         }
+      });
+  }
+
+  getUserProfileInfo(userId: string): Promise<UserInfo>{
+    return this.db.object(`/users/${userId}/profile`)
+      .valueChanges()
+      .first()
+      .toPromise()
+      .then((profileInfo: UserInfo) => {
+        return {
+          id: profileInfo.id,
+          name: profileInfo.name,
+          role: profileInfo.role,
+          email: profileInfo.email,
+          photoUrl: profileInfo.photoUrl
+        }
       })
   }
 

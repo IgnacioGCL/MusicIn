@@ -2,6 +2,16 @@ page-events {
   .black {
     color: #000000;
   }
+  .red{
+    span {
+      color: #ff2a25;
+    }
+  }
+  .align{
+    *{
+      display: inline;
+    }
+  }
   ion-avatar {
     img {
       border-radius: 0 !important;

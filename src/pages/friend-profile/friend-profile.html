@@ -1,0 +1,78 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Perfil</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content no-bounce>
+  <div class="profile-info">
+    <ion-item>
+      <ion-avatar>
+        <img src="{{profileInfo.photoUrl}}">
+      </ion-avatar>
+    </ion-item>
+    <div class="text-info">
+      <div class="user-info-specs" style="margin-top: 0;">
+        <span>Nombre: </span>
+        <p>{{profileInfo.name}}</p>
+      </div>
+      <div class="user-info-specs">
+        <span>Rol: </span>
+        <p *ngIf="profileInfo.role == 'musician'">Músico</p>
+        <p *ngIf="profileInfo.role == 'promotor'">Promotor</p>
+      </div>
+      <div class="user-info-specs">
+        <span>Instrumento: </span>
+        <p>Guitarra</p>
+      </div>
+      <div class="user-info-specs">
+        <span>Correo: </span>
+        <p>{{profileInfo.email}}</p>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="isFriend">
+    <ion-card *ngFor="let message of messages">
+
+      <!-- Message -->
+      <ion-card-content>
+        <p>{{message.text}}</p>
+      </ion-card-content>
+      <div class="youtube-container" *ngIf="message.youtubeUrl">
+        <iframe [src]="message.youtubeUrl | youtube" frameborder="0" allowfullscreen></iframe>
+      </div>
+
+      <!-- Icons -->
+      <ion-grid>
+        <ion-row>
+          <ion-col col-3>
+            <button ion-button icon-left clear small>
+              <ion-icon name="thumbs-up"></ion-icon>
+              <div>{{message.likes}}</div>
+            </button>
+          </ion-col>
+          <ion-col col-3>
+            <button ion-button icon-left clear small>
+              <ion-icon name="text"></ion-icon>
+              <div>{{message.comments}}</div>
+            </button>
+          </ion-col>
+          <ion-col col-6 center text-center>
+            <button disabled ion-button icon-left clear small>
+              <ion-icon name="time"></ion-icon>
+              <div>{{message.date | amTimeAgo}}</div>
+            </button>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card>
+  </div>
+  <div class="request-container" *ngIf="!isFriend">
+    <p class="override-margin-bottom">Todavía no puedes ver los mensajes de esta persona.</p>
+    <p class="no-margin-top">¡Envíale una solicitud de amistad!</p>
+    <button ion-button (tap)="sendFriendRequest()">Enviar solicitud de amistad</button>
+  </div>
+</ion-content>

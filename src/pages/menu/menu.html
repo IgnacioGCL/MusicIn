@@ -1,0 +1,26 @@
+<ion-menu [content]="content">
+
+  <ion-header>
+
+    <ion-navbar>
+      <ion-title>MusicIn</ion-title>
+    </ion-navbar>
+
+  </ion-header>
+
+
+  <ion-content>
+    <ion-list>
+      <button ion-item menuClose (tap)="goToPage(0)">
+        Chats
+      </button>
+      <button ion-item menuClose (tap)="goToPage(1)">
+        Amigos
+      </button>
+      <button ion-item menuClose (tap)="goToPage(2)">
+        Solicitudes
+      </button>
+    </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

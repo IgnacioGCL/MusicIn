@@ -8,6 +8,8 @@ import { MessageCommentsPage } from '../message-comments/message-comments';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { LikesProvider } from '../../providers/likes/likes';
 import { LikesPage } from '../likes/likes';
+import { Subject } from 'rxjs/Subject';
+import { FriendProfilePage } from '../friend-profile/friend-profile';
 
 @Component({
   selector: 'page-home',
@@ -18,6 +20,10 @@ export class HomePage {
   messages: MessageInfo[];
   noMessages: boolean;
   loader: Loading;
+  friendName: Subject<string>;
+  queryFriend;
+  friendInput: string;
+  friends: string[];
 
   constructor(
     private navCtrl: NavController,
@@ -29,9 +35,10 @@ export class HomePage {
     private loading: LoadingController
   ) {
     let loader = this.loading.create({
-      content: 'Espere un momento'
+      content: 'Espere un momento...'
     });
     loader.present();
+    this.friends = [];
     this.messages = [];
     this.messageProvider.getMessages().subscribe(messages => {
       loader.dismiss();
@@ -44,7 +51,15 @@ export class HomePage {
     });
   }
 
-
+  ionViewDidLoad() {
+    this.friendName = new Subject();
+    this.queryFriend = this.friendName.switchMap(friend => {
+      return this.db.list('/usersIds', ref => ref.orderByValue().startAt(friend).endAt(`${friend}\uf8ff`)).snapshotChanges();
+    });
+    this.queryFriend.subscribe(queriedFriends => {
+      this.friends = queriedFriends.map(friend => ({ key: friend.payload.key, name: friend.payload.val() }));
+    });
+  }
 
   goToWritePost() {
     this.modalCtrl.create(WriteMessageComponent).present();
@@ -69,6 +84,20 @@ export class HomePage {
     this.navCtrl.push(LikesPage, {
       userId: userId,
       messageId: messageId
+    });
+  }
+
+  searchFriends() {
+    if (this.friendInput.length > 0) {
+      this.friendName.next(this.friendInput);
+    } else {
+      this.friends = [];
+    }
+  }
+
+  seeFriendProfile(friendId){
+    this.navCtrl.push(FriendProfilePage,{
+      id: friendId
     });
   }
 

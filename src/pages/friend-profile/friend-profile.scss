@@ -1,0 +1,65 @@
+page-friend-profile {
+  .profile-info {
+    .user-info-specs {
+      margin: 5px 0;
+      * {
+        display: inline;
+      }
+    }
+    ion-item {
+      .item-inner {
+        border-bottom: 0 !important;
+      }
+      ion-avatar {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          height: 100px !important;
+          width: 100px !important;
+        }
+      }
+    }
+    .text-info {
+      width: 100%;
+      text-align: center;
+    }
+    span {
+      font-weight: bold;
+    }
+  }
+  button {
+    span {
+      color: #ff2a25;
+    }
+  }
+  .youtube-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    iframe {
+      min-height: 200px;
+      width: 100%;
+    }
+  }
+
+  .request-container{
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    .override-margin-bottom{
+      margin-bottom: 5px;
+    }
+    .no-margin-top{
+      margin-top: 0;
+    }
+    button{
+      span{
+        color: #ffffff;
+      }
+    }
+  }
+}

@@ -1,0 +1,23 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Amigos</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div class="full" *ngIf="noFriends">
+    <p>Todavía no tienes amigos</p>
+  </div>
+  <ion-list *ngIf="!noFriends">
+    <ion-item *ngFor="let friend of friends">
+      <ion-avatar item-start>
+        <img src="{{friend.photoUrl}}">
+      </ion-avatar>
+      <h2>{{friend.name}}</h2>
+    </ion-item>
+  </ion-list>
+
+</ion-content>

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { AngularFireDatabase } from 'angularfire2/database';
-import { MessageInfo } from '../../models/models';
+import { MessageInfo, Comment } from '../../models/models';
 import { ProfileProvider } from '../profile/profile';
 import _ from 'lodash';
 
@@ -71,8 +71,29 @@ export class MessagesProvider {
 
   public getCommentsFromMessage(messageId: string, userId: string): Observable<Comment[]> {
     return this.db.list(`users/${userId}/messages/${messageId}/comments`)
+      .valueChanges() as Observable<Comment[]>;
+  }
+
+  public writeComment(message: string, userId: string, messageId: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const date = new Date().getTime();
+      this.db.list(`/users/${userId}/messages/${messageId}/comments`).push({
+        date,
+        message,
+        userId
+      }).then(() => resolve(), err => {
+        console.log(err)
+        reject(err);
+      });
+    });
+  }
+
+  public getMoreInfoFromUser(userId: string): Promise<any> {
+    return this.db.object(`/users/${userId}/profile`)
       .valueChanges()
-      .map(comments => comments.reverse()) as Observable<Comment[]>;
+      .first()
+      .toPromise()
+      .then((info: any) => ({ name: info.name, photoUrl: info.photoUrl }));
   }
 
   private writeInTimelines(messageId: string, userId: string): Promise<boolean> {

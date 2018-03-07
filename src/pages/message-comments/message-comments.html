@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>MessageComments</ion-title>
+    <ion-title>Comentarios</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -31,8 +31,8 @@
 
 <ion-footer>
   <ion-toolbar class="toolbar-input" keyboard-attach>
-    <input placeholder="Comentario" />
-    <div class="icon-wrapper">
+    <input placeholder="Comentario" [(ngModel)]="comment" />
+    <div class="icon-wrapper" (tap)="sendComment()">
       <ion-icon name="md-send"></ion-icon>
     </div>
   </ion-toolbar>

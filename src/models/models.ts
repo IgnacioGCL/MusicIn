@@ -6,6 +6,12 @@ export interface UserInfo {
     photoUrl: string;
 }
 
+export interface FriendShort{
+    id: string;
+    name: string;
+    photoUrl: string;
+}
+
 export interface MessageInfo {
     photoUrl: string;
     name: string;
@@ -19,12 +25,12 @@ export interface MessageInfo {
     userId: string;
 }
 
-export interface Comments {
+export interface Comment {
     userId: string;
-    name: string;
-    photoUrl: string;
     message: string;
     date: number;
+    name: string;
+    photoUrl: string;
 }
 
 export interface Event {
