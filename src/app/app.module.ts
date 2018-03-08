@@ -42,6 +42,8 @@ import { LikesPage } from '../pages/likes/likes';
 import { MenuPage } from '../pages/menu/menu';
 import { FriendProfilePage } from '../pages/friend-profile/friend-profile';
 import { FriendsPage } from '../pages/friends/friends';
+import { PendingRequestsPage } from '../pages/pending-requests/pending-requests';
+import { FriendsProvider } from '../providers/friends/friends';
 
 locale('es-es');
 
@@ -64,11 +66,12 @@ locale('es-es');
     LikesPage,
     MenuPage,
     FriendProfilePage,
-    FriendsPage
+    FriendsPage,
+    PendingRequestsPage
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp, { mode: 'ios', tabsHideOnSubPages: true }),
+    IonicModule.forRoot(MyApp, { mode: 'ios', tabsHideOnSubPages: true, backButtonText: 'Atrás' }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireDatabaseModule,
@@ -93,7 +96,8 @@ locale('es-es');
     LikesPage,
     MenuPage,
     FriendProfilePage,
-    FriendsPage
+    FriendsPage,
+    PendingRequestsPage
   ],
   providers: [
     StatusBar,
@@ -106,7 +110,8 @@ locale('es-es');
     Camera,
     DatePicker,
     EventsProvider,
-    LikesProvider
+    LikesProvider,
+    FriendsProvider
   ]
 })
 export class AppModule { }

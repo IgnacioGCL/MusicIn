@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-import { LoadingController, Loading } from 'ionic-angular';
+import { LoadingController, Loading, NavController } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { FriendShort } from '../../models/models';
+import { FriendsProvider } from '../../providers/friends/friends';
+import { MessagesProvider } from '../../providers/messages/messages';
+import { FriendProfilePage } from '../friend-profile/friend-profile';
 
 
 @Component({
@@ -15,7 +18,13 @@ export class FriendsPage {
   noFriends: boolean;
   friends: FriendShort[];
 
-  constructor(private loaderCtrl: LoadingController, private db: AngularFireDatabase, private profileProvider: ProfileProvider) {
+  constructor(
+    private loaderCtrl: LoadingController,
+    private db: AngularFireDatabase,
+    private profileProvider: ProfileProvider,
+    private friendsProvider: FriendsProvider,
+    private navCtrl: NavController 
+  ) {
     this.loader = this.loaderCtrl.create({
       content: 'Espere un momento...'
     });
@@ -24,19 +33,31 @@ export class FriendsPage {
   }
 
   loadFriends() {
-    this.db.list(`/users/${this.profileProvider.getProfileInfo().id}/friends`)
-      .valueChanges()
-      .first()
-      .toPromise()
-      .then((friends: FriendShort[]) => {
-        this.loader.dismiss();
-        if (friends.length > 0) {
-          this.friends = friends;
-          this.noFriends = false;
-        } else {
-          this.noFriends = true;
-        }
-      });
+    let promises = [];
+    this.friendsProvider.getFriends().then((friends: FriendShort[]) => {
+      this.loader.dismiss();
+      if (friends.length > 0) {
+        this.noFriends = false;
+        promises = friends.map(friend => {
+          return this.profileProvider.getUserProfileInfo(friend.id).then(userInfo => {
+            return {
+              userId: userInfo.id,
+              name: userInfo.name,
+              photoUrl: userInfo.photoUrl
+            }
+          });
+        });
+      } else {
+        this.noFriends = true;
+      }
+      Promise.all(promises).then(friends => this.friends = friends);
+    });
+  }
+
+  goToProfile(userId: string){
+    this.navCtrl.push(FriendProfilePage,{
+      id: userId
+    });
   }
 
 

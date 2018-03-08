@@ -25,8 +25,8 @@ export class MessageCommentsPage {
 
     this.messagesProvider.getCommentsFromMessage(this.messageId, this.userId).subscribe(comments => {
       this.promises = comments.map(comment => {
-        return this.messagesProvider.getMoreInfoFromUser(comment.userId).then(userInfo => {
-          return comment = {
+        return this.profileProvider.getUserProfileInfo(comment.userId).then(userInfo => {
+          return {
             date: comment.date,
             message: comment.message,
             userId: comment.userId,

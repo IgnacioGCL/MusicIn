@@ -9,7 +9,6 @@ export interface UserInfo {
 export interface FriendShort{
     id: string;
     name: string;
-    photoUrl: string;
 }
 
 export interface MessageInfo {
@@ -39,4 +38,11 @@ export interface Event {
     location: string;
     date: number;
     image: string;
+}
+
+export interface Request{
+    userId: string;
+    id: string;
+    name: string;
+    photoUrl: string;
 }

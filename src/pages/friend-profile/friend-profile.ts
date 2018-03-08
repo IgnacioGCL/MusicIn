@@ -3,6 +3,8 @@ import { NavParams, LoadingController, Loading } from 'ionic-angular';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { UserInfo } from '../../models/models';
+import { FriendsProvider } from '../../providers/friends/friends';
+import { ToastProvider } from '../../providers/toast/toast';
 
 @Component({
   selector: 'page-friend-profile',
@@ -19,7 +21,9 @@ export class FriendProfilePage {
     private profileProvider: ProfileProvider,
     private navParams: NavParams,
     private db: AngularFireDatabase,
-    private loaderCtrl: LoadingController
+    private loaderCtrl: LoadingController,
+    private friendsProvider: FriendsProvider,
+    private toast: ToastProvider
   ) {
     this.profileInfo = {
       id: '',
@@ -38,9 +42,10 @@ export class FriendProfilePage {
       .subscribe(friend => {
         this.loader.dismiss();
         if (friend) {
-          console.log(friend);
+          this.isFriend = true;
         } else {
           this.isFriend = false;
+          this.checkDisableSendRquestButton();
         }
       });
   }
@@ -51,8 +56,20 @@ export class FriendProfilePage {
     });
   }
 
-  sendFriendRequest(){
-    
+  sendFriendRequest() {
+    this.friendsProvider.sendRequest(this.friendId).then(() => {
+      this.toast.requestSent();
+    });
+  }
+
+  checkDisableSendRquestButton() {
+    this.db.list(`/users/${this.profileProvider.getProfileInfo().id}/requestsSent`, ref => ref.orderByValue().equalTo(this.friendId))
+      .valueChanges()
+      .subscribe(users => {
+        if(users.length > 0){
+          document.getElementById("requestButton").disabled = true;
+        }
+      })
   }
 
 }

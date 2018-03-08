@@ -3,6 +3,7 @@ import { NavController, NavParams, Nav, MenuController } from 'ionic-angular';
 import { TabsPage } from '../tabs/tabs';
 import { ChatsPage } from '../chats/chats';
 import { FriendsPage } from '../friends/friends';
+import { PendingRequestsPage } from '../pending-requests/pending-requests';
 
 @Component({
   selector: 'page-menu',
@@ -25,6 +26,9 @@ export class MenuPage {
         break;
       case 1:
         this.nav.push(FriendsPage);
+        break;
+      case 2:
+        this.nav.push(PendingRequestsPage);
         break;
     }
   }

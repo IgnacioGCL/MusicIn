@@ -1,0 +1,24 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Solicitidues pendientes</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+  <div *ngIf="!requests" class="no-requests">
+    <p>No hay solicitudes pendientes</p>
+  </div>
+  <ion-list *ngIf="requests">
+    <ion-item *ngFor="let request of requests; trackBy: trackById">
+      <ion-avatar item-start>
+        <img [src]="request.photoUrl">
+      </ion-avatar>
+      <h2>{{request.name}}</h2>
+      <button ion-button color="danger" (tap)="declineRequest(request.id)">Rechazar</button>
+      <button ion-button (tap)="acceptRequest(request.id, request.userId, request.name)">Aceptar</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

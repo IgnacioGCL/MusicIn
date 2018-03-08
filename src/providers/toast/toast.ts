@@ -36,9 +36,33 @@ export class ToastProvider {
     }).present();
   }
 
-  public eventCreated(){
+  public eventCreated() {
     return this.toastCtrl.create({
       message: 'Evento creado con éxito',
+      duration: 2000,
+      position: 'bottom'
+    }).present();
+  }
+
+  public errorInRequest() {
+    return this.toastCtrl.create({
+      message: 'Ha habido un error al procesar la solicitud, inténtelo más tarde',
+      duration: 2000,
+      position: 'bottom'
+    }).present();
+  }
+
+  public successInRequest() {
+    return this.toastCtrl.create({
+      message: 'Se ha aceptado la solicitud de amistad',
+      duration: 2000,
+      position: 'bottom'
+    }).present();
+  }
+
+  public requestSent() {
+    return this.toastCtrl.create({
+      message: 'Se ha enviado la solicitud de amistad',
       duration: 2000,
       position: 'bottom'
     }).present();
