@@ -4,6 +4,7 @@ import { EventDetailsComponent } from '../../components/event-details/event-deta
 import { CreateEventComponent } from '../../components/create-event/create-event';
 import { NavController } from 'ionic-angular';
 import { EventsProvider } from '../../providers/events/events';
+import { Event } from '../../models/models';
 
 @Component({
   selector: 'page-events',

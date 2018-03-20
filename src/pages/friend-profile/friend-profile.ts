@@ -16,6 +16,7 @@ export class FriendProfilePage {
   profileInfo: UserInfo;
   isFriend: boolean;
   loader: Loading;
+  buttonDisabled: boolean = false;
 
   constructor(
     private profileProvider: ProfileProvider,
@@ -30,7 +31,8 @@ export class FriendProfilePage {
       name: '...',
       email: '...',
       photoUrl: 'assets/imgs/electric-guitar.png',
-      role: '...'
+      role: '...',
+      instrument: '...'
     }
     this.loader = this.loaderCtrl.create({
       content: 'Espere un momento...'
@@ -67,7 +69,7 @@ export class FriendProfilePage {
       .valueChanges()
       .subscribe(users => {
         if(users.length > 0){
-          document.getElementById("requestButton").disabled = true;
+          this.buttonDisabled = true;
         }
       })
   }

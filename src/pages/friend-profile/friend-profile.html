@@ -26,7 +26,7 @@
       </div>
       <div class="user-info-specs">
         <span>Instrumento: </span>
-        <p>Guitarra</p>
+        <p>{{profileInfo.instrument}}</p>
       </div>
       <div class="user-info-specs">
         <span>Correo: </span>
@@ -73,6 +73,6 @@
   <div class="request-container" *ngIf="!isFriend">
     <p class="override-margin-bottom">Todavía no puedes ver los mensajes de esta persona.</p>
     <p class="no-margin-top">¡Envíale una solicitud de amistad!</p>
-    <button id="requestButton" ion-button (tap)="sendFriendRequest()">Enviar solicitud de amistad</button>
+    <button id="requestButton" ion-button (tap)="sendFriendRequest()" [disabled]="buttonDisabled">Enviar solicitud de amistad</button>
   </div>
 </ion-content>

@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import { ActionSheetController, NavController, LoadingController, Loading } from 'ionic-angular';
-import { Camera, CameraOptions } from '@ionic-native/camera';
 import { DatePicker } from '@ionic-native/date-picker';
-import { AngularFireStorage } from 'angularfire2/storage';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Event } from '../../models/models';
 import { ToastProvider } from '../../providers/toast/toast';
+import { EventsProvider } from '../../providers/events/events';
+import { NativeProvider } from '../../providers/native/native';
 
 
 @Component({
@@ -23,13 +23,13 @@ export class CreateEventComponent {
 
   constructor(
     private navCtrl: NavController,
-    private camera: Camera,
     private actionSheet: ActionSheetController,
     private datepicker: DatePicker,
-    private storage: AngularFireStorage,
     private db: AngularFireDatabase,
     private toast: ToastProvider,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private eventsProvider: EventsProvider,
+    private native: NativeProvider
   ) {
     this.dateString = '';
     this.event = {
@@ -40,7 +40,7 @@ export class CreateEventComponent {
       location: ''
     };
     this.imageUploaded = false;
-    this.loader = this.loadingCtrl.create({content: 'Espere un momento'});
+    this.loader = this.loadingCtrl.create({ content: 'Espere un momento' });
   }
 
   closePage() {
@@ -48,58 +48,12 @@ export class CreateEventComponent {
   }
 
   selectImage() {
-    let actionSheet = this.actionSheet.create({
-      title: 'Elija la fuente',
-      buttons: [
-        {
-          text: 'Cámara',
-          handler: () => {
-            const options: CameraOptions = {
-              destinationType: this.camera.DestinationType.DATA_URL,
-              encodingType: this.camera.EncodingType.JPEG,
-              mediaType: this.camera.MediaType.PICTURE,
-              targetWidth: 480,
-              correctOrientation: true
-            };
-            this.camera.getPicture(options).then((imageData) => {
-              imageData = 'data:image/jpeg;base64,' + imageData;
-              this.event.image = imageData;
-              this.imageSrc = imageData;
-              this.imageUploaded = true;
-            }, (err) => {
-              console.log(err)
-            });
-          }
-        },
-        {
-          text: 'Galería',
-          handler: () => {
-            const options: CameraOptions = {
-              sourceType: this.camera.PictureSourceType.SAVEDPHOTOALBUM,
-              destinationType: this.camera.DestinationType.DATA_URL,
-              encodingType: this.camera.EncodingType.JPEG,
-              mediaType: this.camera.MediaType.PICTURE,
-              targetWidth: 480,
-              correctOrientation: true
-            };
-            this.camera.getPicture(options).then((imageData) => {
-              imageData = 'data:image/jpeg;base64,' + imageData;
-              this.event.image = imageData;
-              this.imageSrc = imageData;
-              this.imageUploaded = true;
-            }, (err) => {
-              console.log(err);
-            });
-          }
-        },
-        {
-          text: 'Cancelar',
-          role: 'cancel',
-          handler: () => { }
-        }
-      ]
-    });
-    actionSheet.present();
+    this.native.getImage().then(imageData => {
+      this.event.image = imageData;
+      this.imageSrc = imageData;
+      this.imageUploaded = true;
+    })
+    .catch(err => console.log(err));
   }
 
   chooseDate() {
@@ -118,25 +72,13 @@ export class CreateEventComponent {
 
   createEvent() {
     this.loader.present();
-    this.db.list(`/events`).push({}).then(success => {
-      this.storage.ref(`/events/${success.key}.jpg`).putString(this.event.image, 'data_url').then(snapshot => {
-        this.db.object(`/events/${success.key}`).set({
-          title: this.event.title,
-          description: this.event.description,
-          id: success.key,
-          date: this.event.date,
-          location: this.event.location,
-          imageUrl: snapshot.downloadURL
-        })
-          .then(() => {
-            this.loader.dismiss();
-            this.navCtrl.pop();
-            this.toast.eventCreated();
-          })
-          .catch(err => console.log(err));
+    this.eventsProvider.createEvent(this.event)
+      .then(() => {
+        this.loader.dismiss();
+        this.navCtrl.pop();
+        this.toast.eventCreated();
       })
-        .catch(err => console.log(err));
-    }, err => console.log(err));
+      .catch(err => console.log(err));
   }
 
   private getDateWithFormat(date: Date): string {

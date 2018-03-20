@@ -44,6 +44,9 @@ import { FriendProfilePage } from '../pages/friend-profile/friend-profile';
 import { FriendsPage } from '../pages/friends/friends';
 import { PendingRequestsPage } from '../pages/pending-requests/pending-requests';
 import { FriendsProvider } from '../providers/friends/friends';
+import { LoginPage } from '../pages/login/login';
+import { CreateAccountPage } from '../pages/create-account/create-account';
+import { NativeProvider } from '../providers/native/native';
 
 locale('es-es');
 
@@ -67,7 +70,9 @@ locale('es-es');
     MenuPage,
     FriendProfilePage,
     FriendsPage,
-    PendingRequestsPage
+    PendingRequestsPage,
+    LoginPage,
+    CreateAccountPage
   ],
   imports: [
     BrowserModule,
@@ -97,7 +102,9 @@ locale('es-es');
     MenuPage,
     FriendProfilePage,
     FriendsPage,
-    PendingRequestsPage
+    PendingRequestsPage,
+    LoginPage,
+    CreateAccountPage
   ],
   providers: [
     StatusBar,
@@ -111,7 +118,8 @@ locale('es-es');
     DatePicker,
     EventsProvider,
     LikesProvider,
-    FriendsProvider
+    FriendsProvider,
+    NativeProvider
   ]
 })
 export class AppModule { }

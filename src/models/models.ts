@@ -4,9 +4,19 @@ export interface UserInfo {
     role: string;
     email: string;
     photoUrl: string;
+    instrument: string;
 }
 
-export interface FriendShort{
+export interface NewUser {
+    name: string;
+    password: string;
+    role: string;
+    email: string;
+    instrument: string;
+    photoUrl?: string;
+}
+
+export interface FriendShort {
     id: string;
     name: string;
 }
@@ -40,9 +50,14 @@ export interface Event {
     image: string;
 }
 
-export interface Request{
+export interface Request {
     userId: string;
     id: string;
     name: string;
     photoUrl: string;
+}
+
+export interface Login {
+    email: string;
+    password: string;
 }

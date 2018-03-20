@@ -4,23 +4,17 @@ import { ProfileProvider } from '../profile/profile';
 import { Observable } from 'rxjs/Observable';
 import { UserInfo } from '../../models/models';
 
-/*
-  Generated class for the LikesProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class LikesProvider {
 
   myUserId: string;
 
   constructor(private db: AngularFireDatabase, private profileProvider: ProfileProvider) {
-    this.myUserId = this.profileProvider.getProfileInfo().id;
+
   }
 
   public modifyLike(messageId, userId, likes) {
-    return this.db.object(`users/${userId}/messages/${messageId}/likes/${this.myUserId}`)
+    return this.db.object(`users/${userId}/messages/${messageId}/likes/${this.profileProvider.getProfileInfo().id}`)
       .snapshotChanges()
       .first()
       .toPromise()
@@ -58,9 +52,10 @@ export class LikesProvider {
   }
 
   private addLike(messageId, userId, likes): Promise<boolean> {
+    let myId = this.profileProvider.getProfileInfo().id;
     let promises = [];
     return new Promise((resolve, reject) => {
-      promises.push(this.db.object(`users/${userId}/messages/${messageId}/likes/${this.myUserId}`).set(this.myUserId));
+      promises.push(this.db.object(`users/${userId}/messages/${messageId}/likes/${myId}`).set(myId));
       promises.push(this.db.object(`users/${userId}/messages/${messageId}/content`).update({ likes: likes + 1 }));
       Promise.all(promises)
         .then(() => resolve(true))
@@ -74,7 +69,7 @@ export class LikesProvider {
   private substractLike(messageId, userId, likes): Promise<boolean> {
     let promises = [];
     return new Promise((resolve, reject) => {
-      promises.push(this.db.list(`users/${userId}/messages/${messageId}/likes/${this.myUserId}`).remove());
+      promises.push(this.db.list(`users/${userId}/messages/${messageId}/likes/${this.profileProvider.getProfileInfo().id}`).remove());
       promises.push(this.db.object(`users/${userId}/messages/${messageId}/content`).update({ likes: likes - 1 }));
       Promise.all(promises)
         .then(() => resolve(true))

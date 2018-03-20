@@ -42,7 +42,7 @@ export class HomePage {
     this.messages = [];
     this.messageProvider.getMessages().subscribe(messages => {
       loader.dismiss();
-      if (messages) {
+      if (messages.length > 0) {
         this.noMessages = false;
         this.messages = messages;
       } else {

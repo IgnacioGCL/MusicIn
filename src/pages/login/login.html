@@ -1,0 +1,14 @@
+<ion-content no-bounce>
+  <ion-item>
+    <ion-icon name="ios-at-outline" item-start></ion-icon>
+    <ion-input type="email" placeholder="Email" [(ngModel)]="userLogin.email"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-icon name="ios-lock-outline" item-start></ion-icon>
+    <ion-input type="password" placeholder="Contraseña" [(ngModel)]="userLogin.password"></ion-input>
+  </ion-item>
+  <button ion-button [disabled]="!userLogin.email || !emailPattern.test(userLogin.email) || !userLogin.password" (tap)="login()">Entrar</button>
+  <p>¿No tienes cuenta todavía?
+    <a (tap)="goToCreateAccount()">Créate una</a>
+  </p>
+</ion-content>

@@ -13,17 +13,16 @@ export class MessagesProvider {
   userId: string;
 
   constructor(private db: AngularFireDatabase, private profileProvider: ProfileProvider) {
-    this.userId = this.profileProvider.getProfileInfo().id;
   }
 
   public getMessages(): Observable<MessageInfo[]> {
     let homeMessages = [];
     return new Observable(observer => {
-      this.db.list(`/users/${this.userId}/timeline`)
+      this.db.list(`/users/${this.profileProvider.getProfileInfo().id}/timeline`)
         .valueChanges()
         .map(messages => messages.reverse())
         .subscribe(messages => {
-          if (messages) {
+          if (messages.length > 0) {
             let promises = [];
             messages.forEach((message: any) => {
               promises.push(this.db.object(`users/${message.userId}/messages/${message.messageId}/content`).valueChanges());
@@ -33,7 +32,7 @@ export class MessagesProvider {
               observer.next(homeMessages);
             });
           } else {
-            observer.next();
+            observer.next([]);
           }
         });
     });
@@ -46,7 +45,7 @@ export class MessagesProvider {
         youtubeUrl = this.extractYoutubeUrl(message);
       }
       const date = new Date().getTime();
-      this.db.list(`/users/${this.userId}}/messages/`).push({})
+      this.db.list(`/users/${this.profileProvider.getProfileInfo().id}}/messages/`).push({})
         .then(success => {
           const messageData: MessageInfo = {
             text: message,
@@ -58,11 +57,11 @@ export class MessagesProvider {
             role: this.profileProvider.getProfileInfo().role,
             name: this.profileProvider.getProfileInfo().name,
             date: date,
-            userId: this.userId
+            userId: this.profileProvider.getProfileInfo().id
           }
-          this.db.object(`/users/${this.userId}/messages/${success.key}/content`).set(messageData)
+          this.db.object(`/users/${this.profileProvider.getProfileInfo().id}/messages/${success.key}/content`).set(messageData)
             .then(() => {
-              this.writeInTimelines(success.key, this.userId).then(() => resolve());
+              this.writeInTimelines(success.key, this.profileProvider.getProfileInfo().id).then(() => resolve());
             })
             .catch(err => reject(err));
         }, err => reject(err));
@@ -82,7 +81,7 @@ export class MessagesProvider {
         message,
         userId
       }).then(() => resolve(), err => {
-        console.log(err)
+        console.log(err);
         reject(err);
       });
     });
