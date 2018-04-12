@@ -1,3 +1,52 @@
 page-create-account {
-
+  text-align: center;
+  ion-content {
+    background-image: url('/assets/imgs/login_background.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .title {
+    font-family: 'Avenir Book';
+    font-size: 50px;
+    margin-top: 70px !important;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  .items {
+    background-color: rgba($color: #ffffff, $alpha: 1);
+  }
+  .inputs {
+    margin-top: 50px;
+    input::-webkit-input-placeholder {
+      color: black !important;
+    }
+    ion-item:first-child {
+      border-top: 0 !important;
+    }
+    ion-item:last-child {
+      border-bottom: 0 !important;
+    }
+  }
+  .login-button {
+    background-color: transparent;
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 20px;
+  }
+  .go-back-container {
+    background-color: #ffffff;
+    height: 50px;
+    width: 50px;
+    position: absolute;
+    bottom: -12.5px;
+    left: -12.5px;
+    border-radius: 50%;
+    ion-icon {
+      display: inline-block;
+      font-size: 2.2em;
+      margin-top: 5px;
+      margin-left: 5px;
+      color: $red;
+    }
+  }
 }

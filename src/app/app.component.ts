@@ -8,6 +8,7 @@ import { ProfileProvider } from '../providers/profile/profile';
 import { MenuPage } from '../pages/menu/menu';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
+import { environment } from '../environments/environment';
 
 @Component({
   templateUrl: 'app.html'

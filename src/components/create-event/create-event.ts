@@ -20,6 +20,7 @@ export class CreateEventComponent {
   now: number;
   dateString: string;
   loader: Loading;
+  autocomplete: any;
 
   constructor(
     private navCtrl: NavController,
@@ -37,11 +38,26 @@ export class CreateEventComponent {
       description: '',
       image: '',
       date: 0,
-      location: ''
+      location: '',
+      locationCoords: { lat: 0, lng: 0 }
     };
     this.imageUploaded = false;
     this.loader = this.loadingCtrl.create({ content: 'Espere un momento' });
   }
+
+  ionViewDidEnter() {
+    let input = (<HTMLInputElement>document.getElementsByClassName("text-input-ios")[1]);
+    let autocomplete = new google.maps.places.Autocomplete(input, { types: [], componentRestrictions: { country: "es" } });
+    google.maps.event.addListener(autocomplete, 'place_changed', () => {
+      let place = autocomplete.getPlace();
+      let geometry = place.geometry;
+      if ((geometry) !== undefined) {
+        this.event.locationCoords.lat = geometry.location.lat();
+        this.event.locationCoords.lng = geometry.location.lng();
+      };
+    });
+  }
+
 
   closePage() {
     this.navCtrl.pop();
@@ -53,7 +69,7 @@ export class CreateEventComponent {
       this.imageSrc = imageData;
       this.imageUploaded = true;
     })
-    .catch(err => console.log(err));
+      .catch(err => console.log(err));
   }
 
   chooseDate() {

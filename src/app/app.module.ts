@@ -4,6 +4,9 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Camera } from '@ionic-native/camera';
 import { DatePicker } from '@ionic-native/date-picker';
+import { Network } from '@ionic-native/network';
+import { Geolocation } from '@ionic-native/geolocation';
+
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
@@ -119,7 +122,9 @@ locale('es-es');
     EventsProvider,
     LikesProvider,
     FriendsProvider,
-    NativeProvider
+    NativeProvider,
+    Network,
+    Geolocation
   ]
 })
 export class AppModule { }

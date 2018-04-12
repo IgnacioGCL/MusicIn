@@ -1,3 +1,37 @@
 page-login {
-
+  text-align: center;
+  ion-content {
+    background-image: url('/assets/imgs/login_background.png');
+    background-size: cover;
+    background-position: center;
+  }
+  .title {
+    font-family: 'Avenir Book';
+    font-size: 50px;
+    margin-top: 70px !important;
+    color: #ffffff;
+    font-weight: bold;
+  }
+  .items {
+    background-color: rgba($color: #ffffff, $alpha: 1);
+  }
+  .inputs {
+    margin-top: 200px;
+    input::-webkit-input-placeholder {
+      color: black !important;
+    }
+  }
+  .login-button {
+    background-color: transparent;
+    font-size: 20px;
+    color: #ffffff;
+    margin-top: 20px;
+  }
+  .create-account-text {
+    color: #ffffff;
+  }
+  .link {
+    color: #ffffff;
+    text-decoration: underline;
+  }
 }

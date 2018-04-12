@@ -18,11 +18,11 @@ export class CreateAccountPage {
   constructor(public navCtrl: NavController, private profile: ProfileProvider, private loadingCtrl: LoadingController) {
   }
 
-  changePasswordVisbility() {
+  changePasswordVisbility(): void {
     this.passwordVisible = !this.passwordVisible;
   }
 
-  createAccount() {
+  createAccount(): void {
     let loader = this.loadingCtrl.create({ content: 'Creando cuenta' });
     loader.present();
     this.profile.createAccount(this.newUser).then(() => {
@@ -30,9 +30,12 @@ export class CreateAccountPage {
       this.navCtrl.push(MenuPage);
     }).catch(err => {
       console.log(err);
-      loader.dismiss(); 
+      loader.dismiss();
     });
   }
 
+  goBack(): void {
+    this.navCtrl.pop();
+  }
 
 }

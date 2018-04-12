@@ -46,6 +46,7 @@ export interface Event {
     title: string;
     description: string;
     location: string;
+    locationCoords: { lat: number, lng: number };
     date: number;
     image: string;
 }
