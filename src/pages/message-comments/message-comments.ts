@@ -46,7 +46,10 @@ export class MessageCommentsPage {
 
   sendComment() {
     this.loader = this.loaderCtrl.create({ content: 'Espere un momento...' });
-    this.messagesProvider.writeComment(this.comment, this.profileProvider.getProfileInfo().id, this.messageId).then(() => this.loader.dismiss());
+    this.messagesProvider.writeComment(this.comment, this.profileProvider.getProfileInfo().id, this.messageId).then(() => {
+      this.loader.dismiss();
+      this.comment = "";
+    });
   }
 
 }

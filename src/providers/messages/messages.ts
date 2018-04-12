@@ -74,16 +74,22 @@ export class MessagesProvider {
   }
 
   public writeComment(message: string, userId: string, messageId: string): Promise<any> {
+    let promises = [];
+    const date = new Date().getTime();
     return new Promise((resolve, reject) => {
-      const date = new Date().getTime();
-      this.db.list(`/users/${userId}/messages/${messageId}/comments`).push({
-        date,
-        message,
-        userId
-      }).then(() => resolve(), err => {
-        console.log(err);
-        reject(err);
-      });
+      this.db.object(`/users/${userId}/messages/${messageId}/content`)
+        .valueChanges()
+        .first()
+        .toPromise().then((messageContent: any) => {
+          promises.push(this.db.list(`/users/${userId}/messages/${messageId}/comments`).push({
+            date,
+            message,
+            userId
+          }));
+          const commentsNumber = messageContent.comments + 1;
+          promises.push(this.db.object(`/users/${userId}/messages/${messageId}/content/comments`).set(commentsNumber));
+          Promise.all(promises).then(() => resolve());
+        }).catch(err => reject(err));
     });
   }
 
