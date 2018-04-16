@@ -1,4 +1,49 @@
-<!-- Generated template for the CreateOfferComponent component -->
-<div>
-  {{text}}
-</div>
+
+<ion-content class="positions-absolute">
+  <div class="close-button-div">
+    <button class="close-button" (tap)="closePage()" ion-button icon-only clear>
+      <ion-icon name="close"></ion-icon>
+    </button>
+  </div>
+  <form (ngSubmit)="createOffer()" #offerForm="ngForm">
+    <div class="img-container" (tap)="selectImage()" [ngStyle]="{'background-image': 'url(' + imageSrc + ')'}">
+      <img *ngIf="!imageUploaded" src="assets/imgs/upload_image.png" />
+    </div>
+    <div class="create-title">
+      <p>Información de la oferta:</p>
+    </div>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-create"></ion-icon>
+      </ion-label>
+      <ion-input required type="text" [(ngModel)]="offer.title" name="title" placeholder="Título"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-pin"></ion-icon>
+      </ion-label>
+      <ion-input required type="text" [(ngModel)]="offer.direction" name="location" placeholder="Dirección"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-call"></ion-icon>
+      </ion-label>
+      <ion-input required type="number" [(ngModel)]="offer.contactNumber" name="contactNumber" class="date-input" placeholder="Teléfono de contacto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-at"></ion-icon>
+      </ion-label>
+      <ion-input required type="email" [(ngModel)]="offer.contactEmail" name="contactEmail" class="date-input" placeholder="Email de contacto"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label>
+        <ion-icon name="md-create"></ion-icon>
+      </ion-label>
+      <ion-textarea required [(ngModel)]="offer.description" name="description" placeholder="Descripción"></ion-textarea>
+    </ion-item>
+    <button [disabled]="!offerForm.form.valid || (offer.image.length == 0)" type="submit" ion-button full class="button-blue">
+      Crear evento
+    </button>
+  </form>
+</ion-content>

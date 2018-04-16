@@ -1,13 +1,10 @@
 import { Component } from '@angular/core';
-import { ModalController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 import { OfferDetailsComponent } from '../../components/offer-details/offer-details';
+import { Offer } from '../../models/models';
+import { OffersManagerProvider } from '../../providers/offers-manager/offers-manager';
+import { CreateOfferComponent } from '../../components/create-offer/create-offer';
 
-/**
- * Generated class for the OffersPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
 
 @Component({
   selector: 'page-offers',
@@ -15,11 +12,28 @@ import { OfferDetailsComponent } from '../../components/offer-details/offer-deta
 })
 export class OffersPage {
 
-  constructor(private modalCtrl: ModalController) {
+
+  offers: Offer[];
+
+  constructor(private modalCtrl: ModalController, private navCtrl: NavController, private offersManager: OffersManagerProvider) {
+    this.offersManager.getOffers().subscribe(offers => {
+      console.log(offers);
+      this.offers = offers;
+    });
   }
 
-  seeOfferDetails(){
-    this.modalCtrl.create(OfferDetailsComponent).present();
+  seeOfferDetails(offer: Offer): void {
+    this.modalCtrl.create(OfferDetailsComponent, {
+      offer
+    }).present();
+  }
+
+  createOffer(): void {
+    this.navCtrl.push(CreateOfferComponent);
+  }
+
+  trackById(index, item) {
+    return item.id;
   }
 
 }

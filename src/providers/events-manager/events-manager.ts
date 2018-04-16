@@ -6,7 +6,7 @@ import { Event } from '../../models/models';
 
 
 @Injectable()
-export class EventsProvider {
+export class EventsManagerProvider {
 
   constructor(private db: AngularFireDatabase, private storage: AngularFireStorage) {
 
@@ -27,6 +27,7 @@ export class EventsProvider {
             id: success.key,
             date: event.date,
             location: event.location,
+            locationCoords: event.locationCoords,
             imageUrl: snapshot.downloadURL
           })
             .then(() => resolve())

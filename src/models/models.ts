@@ -1,4 +1,4 @@
-export interface UserInfo {
+export type UserInfo = {
     id: string;
     name: string;
     role: string;
@@ -7,7 +7,7 @@ export interface UserInfo {
     instrument: string;
 }
 
-export interface NewUser {
+export type NewUser = {
     name: string;
     password: string;
     role: string;
@@ -16,12 +16,12 @@ export interface NewUser {
     photoUrl?: string;
 }
 
-export interface FriendShort {
+export type FriendShort = {
     id: string;
     name: string;
 }
 
-export interface MessageInfo {
+export type MessageInfo = {
     photoUrl: string;
     name: string;
     role: string;
@@ -34,7 +34,7 @@ export interface MessageInfo {
     userId: string;
 }
 
-export interface Comment {
+export type Comment = {
     userId: string;
     message: string;
     date: number;
@@ -42,23 +42,35 @@ export interface Comment {
     photoUrl: string;
 }
 
-export interface Event {
+export type Event = {
     title: string;
     description: string;
     location: string;
     locationCoords: { lat: number, lng: number };
     date: number;
     image: string;
+    imageUrl?: string;
 }
 
-export interface Request {
+export type Offer = {
+    image: string;
+    title: string;
+    contactMobile: number;
+    contactEmail: string;
+    description: string;
+    location: string;
+    locationCoords: { lat: number, lng: number };
+    imageUrl?: string;
+}
+
+export type Request = {
     userId: string;
     id: string;
     name: string;
     photoUrl: string;
 }
 
-export interface Login {
+export type Login = {
     email: string;
     password: string;
 }

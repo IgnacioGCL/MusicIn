@@ -38,7 +38,7 @@ import { YoutubePipe } from '../pipes/youtube/youtube';
 import { ChatsPage } from '../pages/chats/chats';
 import { CreateEventComponent } from '../components/create-event/create-event';
 import { CreateOfferComponent } from '../components/create-offer/create-offer';
-import { EventsProvider } from '../providers/events/events';
+import { EventsManagerProvider } from '../providers/events-manager/events-manager';
 import { MessageCommentsPage } from '../pages/message-comments/message-comments';
 import { LikesProvider } from '../providers/likes/likes';
 import { LikesPage } from '../pages/likes/likes';
@@ -50,6 +50,7 @@ import { FriendsProvider } from '../providers/friends/friends';
 import { LoginPage } from '../pages/login/login';
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { NativeProvider } from '../providers/native/native';
+import { OffersManagerProvider } from '../providers/offers-manager/offers-manager';
 
 locale('es-es');
 
@@ -119,12 +120,13 @@ locale('es-es');
     ToastProvider,
     Camera,
     DatePicker,
-    EventsProvider,
+    EventsManagerProvider,
     LikesProvider,
     FriendsProvider,
     NativeProvider,
     Network,
-    Geolocation
+    Geolocation,
+    OffersManagerProvider
   ]
 })
 export class AppModule { }

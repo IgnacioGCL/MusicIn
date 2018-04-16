@@ -4,7 +4,7 @@ import { DatePicker } from '@ionic-native/date-picker';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { Event } from '../../models/models';
 import { ToastProvider } from '../../providers/toast/toast';
-import { EventsProvider } from '../../providers/events/events';
+import { EventsManagerProvider } from '../../providers/events-manager/events-manager';
 import { NativeProvider } from '../../providers/native/native';
 
 
@@ -29,7 +29,7 @@ export class CreateEventComponent {
     private db: AngularFireDatabase,
     private toast: ToastProvider,
     private loadingCtrl: LoadingController,
-    private eventsProvider: EventsProvider,
+    private eventsProvider: EventsManagerProvider,
     private native: NativeProvider
   ) {
     this.dateString = '';
@@ -51,6 +51,7 @@ export class CreateEventComponent {
     google.maps.event.addListener(autocomplete, 'place_changed', () => {
       let place = autocomplete.getPlace();
       let geometry = place.geometry;
+      this.event.location = place.formatted_address;      
       if ((geometry) !== undefined) {
         this.event.locationCoords.lat = geometry.location.lat();
         this.event.locationCoords.lng = geometry.location.lng();

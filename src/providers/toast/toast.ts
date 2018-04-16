@@ -67,5 +67,13 @@ export class ToastProvider {
       position: 'bottom'
     }).present();
   }
+  
+  public offerCreated(){
+    return this.toastCtrl.create({
+      message: 'Se ha creado la oferta correctamente',
+      duration: 2000,
+      position: 'bottom'
+    }).present();
+  }
 
 }
