@@ -1,0 +1,36 @@
+page-events-map {
+  #map {
+    height: 200px;
+    width: 100%;
+  }
+  .divider {
+    height: 5px;
+    border-radius: 50px;
+    margin: 10px 0;
+  }
+  .event-info-container {
+    .first {
+      margin-top: 20px;
+    }
+    .info {
+      text-align: center;
+    }
+    .title-image {
+      text-align: center;
+      img {
+        max-height: 150px;
+      }
+    }
+    .more-info {
+      p {
+        margin: 5px 0;
+      }
+      * {
+        display: inline-block;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}

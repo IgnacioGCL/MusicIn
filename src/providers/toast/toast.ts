@@ -75,5 +75,14 @@ export class ToastProvider {
       position: 'bottom'
     }).present();
   }
+  
+  public errorInMap(){
+    return this.toastCtrl.create({
+      message: 'Ha habido un problema al cargar el mapa. Inténtelo más tarde.',
+      duration: 2000,
+      position: 'bottom'
+    }).present();
+
+  }
 
 }

@@ -1,0 +1,31 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>EventsMap</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div id="map"></div>
+  <div *ngIf="event" class="event-info-container">
+    <hr class="divider">
+    <div class="title-image">
+      <h2>{{event.title}}</h2>
+      <img [src]="event.imageUrl">
+    </div>
+    <div class="first more-info">
+      <span>Descripción:</span>
+      <p>{{event.description}}</p>
+    </div>
+    <div class="more-info">
+      <span>Lugar:</span>
+      <p>{{event.location}}</p>
+    </div>
+    <div class="more-info">
+      <span>Fecha:</span>
+      <p>{{formatDate(event.date)}}</p>
+    </div>
+  </div>
+</ion-content>

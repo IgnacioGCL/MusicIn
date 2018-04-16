@@ -5,6 +5,7 @@ import { CreateEventComponent } from '../../components/create-event/create-event
 import { NavController } from 'ionic-angular';
 import { EventsManagerProvider } from '../../providers/events-manager/events-manager';
 import { Event } from '../../models/models';
+import { EventsMapPage } from '../events-map/events-map';
 
 @Component({
   selector: 'page-events',
@@ -16,6 +17,10 @@ export class EventsPage {
 
   constructor(private modalCtrl: ModalController, private navCtrl: NavController, private eventsProvider: EventsManagerProvider) {
     this.eventsProvider.getEvents().subscribe(events => this.events = events);
+  }
+
+  seeEventsInMap() {
+    this.navCtrl.push(EventsMapPage, { events: this.events });
   }
 
   seeEventDetails(event) {

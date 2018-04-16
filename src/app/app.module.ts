@@ -51,6 +51,7 @@ import { LoginPage } from '../pages/login/login';
 import { CreateAccountPage } from '../pages/create-account/create-account';
 import { NativeProvider } from '../providers/native/native';
 import { OffersManagerProvider } from '../providers/offers-manager/offers-manager';
+import { EventsMapPage } from '../pages/events-map/events-map';
 
 locale('es-es');
 
@@ -76,7 +77,8 @@ locale('es-es');
     FriendsPage,
     PendingRequestsPage,
     LoginPage,
-    CreateAccountPage
+    CreateAccountPage,
+    EventsMapPage
   ],
   imports: [
     BrowserModule,
@@ -108,7 +110,8 @@ locale('es-es');
     FriendsPage,
     PendingRequestsPage,
     LoginPage,
-    CreateAccountPage
+    CreateAccountPage,
+    EventsMapPage
   ],
   providers: [
     StatusBar,
