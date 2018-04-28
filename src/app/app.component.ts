@@ -9,6 +9,7 @@ import { MenuPage } from '../pages/menu/menu';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { LoginPage } from '../pages/login/login';
 import { environment } from '../environments/environment';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   templateUrl: 'app.html'
@@ -28,11 +29,13 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       statusBar.styleDefault();
       splashScreen.hide();
-      this.checkIfLogged();
+      this.profileProvider.getAuthState().subscribe(res => {
+        if (res) {
+          this.rootPage = MenuPage;
+        } else {
+          this.rootPage = LoginPage;
+        }
+      });
     });
-  }
-
-  checkIfLogged(): void {
-    this.rootPage = localStorage.getItem('music_in_user') ? MenuPage : LoginPage;
   }
 }

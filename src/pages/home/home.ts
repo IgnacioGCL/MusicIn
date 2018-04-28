@@ -10,6 +10,7 @@ import { LikesProvider } from '../../providers/likes/likes';
 import { LikesPage } from '../likes/likes';
 import { Subject } from 'rxjs/Subject';
 import { FriendProfilePage } from '../friend-profile/friend-profile';
+import { StatusBar } from '@ionic-native/status-bar';
 
 @Component({
   selector: 'page-home',

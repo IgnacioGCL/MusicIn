@@ -2,12 +2,25 @@ import { Injectable } from '@angular/core';
 import { AngularFireDatabase } from 'angularfire2/database';
 import { UserInfo, NewUser } from '../../models/models';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { BehaviorSubject } from 'rxjs'
+import { Subject } from 'rxjs/Subject';
+import { Observable } from 'rxjs/Observable';
 
 
 @Injectable()
 export class ProfileProvider {
 
+  isTotallyLogged = new BehaviorSubject<boolean>(this.getLocalStorageState());
+
   constructor(private db: AngularFireDatabase, private auth: AngularFireAuth) {
+  }
+
+  private getLocalStorageState(): boolean {
+    return !!localStorage.getItem('music_in_user');
+  }
+
+  public getAuthState(): Observable<boolean> {
+    return this.isTotallyLogged.asObservable();
   }
 
   public userLogin(email: string, password: string): Promise<any> {
@@ -16,11 +29,22 @@ export class ProfileProvider {
         .then(success => {
           this.getUserProfileInfo(success.uid).then(userProfile => {
             this.setUserInfoInLocalStorage(userProfile);
+            this.isTotallyLogged.next(true);
             resolve();
           })
-          .catch(err => reject(err.code));
+            .catch(err => reject(err.code));
         })
         .catch(err => reject(err.code));
+    });
+  }
+
+  public userLogout(): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.auth.auth.signOut().then(() => {
+        localStorage.removeItem('music_in_user');
+        this.isTotallyLogged.next(false);
+        resolve();
+      }).catch(err => reject(err));
     });
   }
 

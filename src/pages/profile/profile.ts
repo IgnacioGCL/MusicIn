@@ -2,7 +2,8 @@ import { Component } from '@angular/core';
 import { MessagesProvider } from '../../providers/messages/messages';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { UserInfo, MessageInfo } from '../../models/models';
-import { ActionSheetController } from 'ionic-angular';
+import { ActionSheetController, NavController, LoadingController } from 'ionic-angular';
+import { LoginPage } from '../login/login';
 
 
 @Component({
@@ -13,7 +14,13 @@ export class ProfilePage {
   messages: MessageInfo[];
   profileInfo: UserInfo;
 
-  constructor(private messageProvider: MessagesProvider, private profileProvider: ProfileProvider, private actionCtrl: ActionSheetController) {
+  constructor(
+    private messageProvider: MessagesProvider,
+    private profileProvider: ProfileProvider,
+    private actionCtrl: ActionSheetController,
+    private navCtrl: NavController,
+    private loadingCtrl: LoadingController
+  ) {
     this.profileInfo = {
       id: '',
       name: '...',
@@ -39,15 +46,25 @@ export class ProfilePage {
         },
         {
           text: 'Subir imagen',
-          handler: () => {}
+          handler: () => { }
         },
         {
           text: 'Cancelar',
           role: 'cancel',
-          handler: () => {}
+          handler: () => { }
         }
       ]
     }).present();
+  }
+
+  logout(): void {
+    let loader = this.loadingCtrl.create({
+      content: 'Espere un momento'
+    });
+    loader.present();
+    this.profileProvider.userLogout().then(() => {
+      loader.dismiss();
+    });
   }
 
 }
