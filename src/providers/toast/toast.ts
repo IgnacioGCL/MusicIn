@@ -67,22 +67,29 @@ export class ToastProvider {
       position: 'bottom'
     }).present();
   }
-  
-  public offerCreated(){
+
+  public offerCreated() {
     return this.toastCtrl.create({
       message: 'Se ha creado la oferta correctamente',
       duration: 2000,
       position: 'bottom'
     }).present();
   }
-  
-  public errorInMap(){
+
+  public errorInMap() {
     return this.toastCtrl.create({
       message: 'Ha habido un problema al cargar el mapa. Inténtelo más tarde.',
       duration: 2000,
       position: 'bottom'
     }).present();
+  }
 
+  public errorInCreatingChatNoFriends() {
+    return this.toastCtrl.create({
+      message: 'No tienes amigos con los que poder iniciar una conversación, ¡agrega a uno para empezar!',
+      duration: 3000,
+      position: 'bottom'
+    }).present();
   }
 
 }

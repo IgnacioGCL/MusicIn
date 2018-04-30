@@ -1,0 +1,22 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>{{friendName}}</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <div class="message" *ngFor="let message of messages" [ngClass]="message.cssClass">
+    {{message.content}}
+  </div>
+  <ion-footer>
+    <ion-toolbar class="toolbar-input" keyboard-attach>
+      <input placeholder="Escribe tu mensaje" [(ngModel)]="chatMessage">
+      <div class="icon-wrapper" (tap)="writeMessage()">
+        <ion-icon name="md-send"></ion-icon>
+      </div>
+    </ion-toolbar>
+  </ion-footer>
+</ion-content>

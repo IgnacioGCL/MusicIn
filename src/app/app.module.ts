@@ -52,6 +52,8 @@ import { CreateAccountPage } from '../pages/create-account/create-account';
 import { NativeProvider } from '../providers/native/native';
 import { OffersManagerProvider } from '../providers/offers-manager/offers-manager';
 import { EventsMapPage } from '../pages/events-map/events-map';
+import { ChatsManagerProvider } from '../providers/chats-manager/chats-manager';
+import { ChatPage } from '../pages/chat/chat';
 
 locale('es-es');
 
@@ -78,7 +80,8 @@ locale('es-es');
     PendingRequestsPage,
     LoginPage,
     CreateAccountPage,
-    EventsMapPage
+    EventsMapPage,
+    ChatPage
   ],
   imports: [
     BrowserModule,
@@ -111,7 +114,8 @@ locale('es-es');
     PendingRequestsPage,
     LoginPage,
     CreateAccountPage,
-    EventsMapPage
+    EventsMapPage,
+    ChatPage
   ],
   providers: [
     StatusBar,
@@ -129,7 +133,8 @@ locale('es-es');
     NativeProvider,
     Network,
     Geolocation,
-    OffersManagerProvider
+    OffersManagerProvider,
+    ChatsManagerProvider
   ]
 })
 export class AppModule { }
