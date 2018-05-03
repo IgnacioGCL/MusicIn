@@ -52,6 +52,9 @@ export class ChatsManagerProvider {
     });
   }
 
+  public deleteChat(chatRoomId: string): Promise<any> {
+    return this.db.object(`/chats/${chatRoomId}`).set({});
+  }
 
   private getFriendPhotoUrl(friendId: string): Promise<string> {
     return this.db.object(`/users/${friendId}/profile/photoUrl`).valueChanges().first().toPromise() as Promise<string>;

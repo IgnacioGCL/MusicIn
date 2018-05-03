@@ -13,14 +13,23 @@
 
 <ion-content padding>
   <ion-list>
-    <ion-item *ngFor="let chat of chats" (tap)="goToChat(chat.chatRoomId, chat.friendName)">
-      <ion-avatar item-start>
-        <img [src]="chat.friendPhotoUrl">
-      </ion-avatar>
-      <h2 class="friend-name">{{chat.friendName}}</h2>
-      <p>Inicio del chat:
-        <span>{{chat.startDate | amTimeAgo}}</span>
-      </p>
-    </ion-item>
+    <ion-item-sliding *ngFor="let chat of chats">
+      <ion-item (tap)="goToChat(chat.chatRoomId, chat.friendName)">
+        <ion-avatar item-start>
+          <img [src]="chat.friendPhotoUrl">
+        </ion-avatar>
+        <h2 class="friend-name">{{chat.friendName}}</h2>
+        <p>Inicio del chat:
+          <span>{{chat.startDate | amTimeAgo}}</span>
+        </p>
+      </ion-item>
+
+      <ion-item-options side="right">
+        <button ion-button (tap)="deleteChat(chat.chatRoomId, chat.friendName)">
+          <ion-icon name="trash"></ion-icon>
+          Eliminar
+        </button>
+      </ion-item-options>
+    </ion-item-sliding>
   </ion-list>
 </ion-content>

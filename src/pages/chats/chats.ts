@@ -26,7 +26,6 @@ export class ChatsPage {
 
   ionViewDidLoad(): void {
     this.chatsManager.getChats().subscribe(chats => {
-      console.log(chats);
       this.chats = chats
     });
   }
@@ -73,5 +72,24 @@ export class ChatsPage {
     this.navCtrl.push(ChatPage, { chatRoomId, friendName });
   }
 
+  deleteChat(chatRoomId: string, friendName: string): void {
+    this.alertCtrl.create({
+      title: 'Eliminar chat',
+      message: `¿Estás seguro que deseas eliminar el chat con ${friendName}? Esta acción no se puede deshacer`,
+      enableBackdropDismiss: false,
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel'
+        },
+        {
+          text: 'Si',
+          handler: () => {
+            this.chatsManager.deleteChat(chatRoomId)
+          }
+        }
+      ]
+    }).present();
+  }
 
 }
