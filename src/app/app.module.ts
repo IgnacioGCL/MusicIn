@@ -1,5 +1,6 @@
 import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 import { Camera } from '@ionic-native/camera';
@@ -54,6 +55,7 @@ import { OffersManagerProvider } from '../providers/offers-manager/offers-manage
 import { EventsMapPage } from '../pages/events-map/events-map';
 import { ChatsManagerProvider } from '../providers/chats-manager/chats-manager';
 import { ChatPage } from '../pages/chat/chat';
+import { RichContentComponent } from '../components/rich-content/rich-content';
 
 locale('es-es');
 
@@ -81,7 +83,8 @@ locale('es-es');
     LoginPage,
     CreateAccountPage,
     EventsMapPage,
-    ChatPage
+    ChatPage,
+    RichContentComponent
   ],
   imports: [
     BrowserModule,
@@ -90,7 +93,8 @@ locale('es-es');
     AngularFireAuthModule,
     AngularFireDatabaseModule,
     AngularFireStorageModule,
-    MomentModule
+    MomentModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -115,7 +119,8 @@ locale('es-es');
     LoginPage,
     CreateAccountPage,
     EventsMapPage,
-    ChatPage
+    ChatPage,
+    RichContentComponent
   ],
   providers: [
     StatusBar,

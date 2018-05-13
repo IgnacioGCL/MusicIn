@@ -32,6 +32,7 @@ export type MessageInfo = {
     likes: number;
     date: number;
     userId: string;
+    richContent?: string;
 }
 
 export type Comment = {

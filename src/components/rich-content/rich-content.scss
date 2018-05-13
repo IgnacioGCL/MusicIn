@@ -1,0 +1,22 @@
+rich-content {
+  .whole-page {
+    height: 100vh;
+    background-color: #ffffff;
+    overflow: scroll;
+    padding-bottom: 80px;
+  }
+  h1{
+      text-align: center;
+      padding-top: 20px;
+  }
+  .padding {
+    padding-left: 25px;
+    padding-right: 25px;
+    text-align: justify;
+  }
+  .exit-button {
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+  }
+}

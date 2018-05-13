@@ -37,8 +37,12 @@
 
 
     <!-- Message -->
-    <ion-card-content (tap)="seeLikes(message.id, message.userId)">
-      <p>{{message.text}}</p>
+    <ion-card-content>
+      <p [innerHtml]="getMessage(message.text)" (tap)="seeLikes(message.id, message.userId)"></p>
+      <p *ngIf="message.richContent">
+        <b>Contenido enriquecido:</b>
+        <a (tap)="showRichContent(message.richContent)">{{message.richContent}}</a>
+      </p>
     </ion-card-content>
     <div class="youtube-container" *ngIf="message.youtubeUrl">
       <iframe [src]="message.youtubeUrl | youtube" frameborder="0" allowfullscreen></iframe>

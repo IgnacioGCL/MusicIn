@@ -4,16 +4,18 @@ import { AngularFireDatabase } from 'angularfire2/database';
 import { MessageInfo, Comment } from '../../models/models';
 import { ProfileProvider } from '../profile/profile';
 import _ from 'lodash';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 
 @Injectable()
 export class MessagesProvider {
 
   urlRegex: RegExp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
+  richContentRegex: RegExp = /( #[A-Za-z_]* )/g;
   userId: string;
-  
 
-  constructor(private db: AngularFireDatabase, private profileProvider: ProfileProvider) {
+
+  constructor(private db: AngularFireDatabase, private profileProvider: ProfileProvider, private http: HttpClient) {
   }
 
   public getMessages(): Observable<MessageInfo[]> {
@@ -41,9 +43,14 @@ export class MessagesProvider {
 
   public writeMessage(message: string): Promise<any> {
     var youtubeUrl: string;
+    var richContent: string;
     return new Promise((resolve, reject) => {
       if (this.thereIsYoutubeUrl(message)) {
         youtubeUrl = this.extractYoutubeUrl(message);
+      }
+      if (this.thereIsRichContent(message)) {
+        richContent = this.extractRichContent(message);
+        console.log(richContent);
       }
       const date = new Date().getTime();
       this.db.list(`/users/${this.profileProvider.getProfileInfo().id}}/messages/`).push({})
@@ -52,6 +59,7 @@ export class MessagesProvider {
             text: message,
             id: success.key,
             youtubeUrl: youtubeUrl || null,
+            richContent: richContent || null,
             comments: 0,
             likes: 0,
             photoUrl: this.profileProvider.getProfileInfo().photoUrl,
@@ -121,6 +129,15 @@ export class MessagesProvider {
     });
   }
 
+  public getInfoFromRichContent(richContent: string): Observable<any> {
+    richContent = richContent.replace(/#/g, '');
+    const query = `PREFIX res: <http://dbpedia.org/resource/> SELECT ?musicianInfo WHERE {res:${richContent} dbo:abstract ?musicianInfo FILTER langMatches(lang(?musicianInfo),'es')}`;
+    const format = 'json';
+    const url = `http://dbpedia.org/sparql?query=${query}&format=${format}`;
+
+    return this.http.get(url);
+  }
+
   private thereIsYoutubeUrl(message: string): boolean {
     if (this.urlRegex.test(message)) {
       if (message.includes('youtube.com') || message.includes('youtu.be')) {
@@ -139,6 +156,18 @@ export class MessagesProvider {
     } else {
       return youtubeUrl.replace('youtu.be', 'youtube.com/embed');
     }
+  }
+
+  private thereIsRichContent(message: string): boolean {
+    if (this.richContentRegex.test(message)) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  private extractRichContent(message: string): string {
+    return message.match(this.richContentRegex)[0].trim();
   }
 
 }

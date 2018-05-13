@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { MessagesProvider } from '../../providers/messages/messages';
 import { ModalController } from 'ionic-angular/components/modal/modal-controller';
 import { WriteMessageComponent } from '../../components/write-message/write-message';
@@ -11,6 +11,7 @@ import { LikesPage } from '../likes/likes';
 import { Subject } from 'rxjs/Subject';
 import { FriendProfilePage } from '../friend-profile/friend-profile';
 import { StatusBar } from '@ionic-native/status-bar';
+import { RichContentComponent } from '../../components/rich-content/rich-content';
 
 @Component({
   selector: 'page-home',
@@ -33,7 +34,8 @@ export class HomePage {
     private messagesProvider: MessagesProvider,
     private db: AngularFireDatabase,
     private likesProvider: LikesProvider,
-    private loading: LoadingController
+    private loading: LoadingController,
+    private cdRef: ChangeDetectorRef
   ) {
     let loader = this.loading.create({
       content: 'Espere un momento...'
@@ -96,10 +98,26 @@ export class HomePage {
     }
   }
 
-  seeFriendProfile(friendId){
-    this.navCtrl.push(FriendProfilePage,{
+  seeFriendProfile(friendId) {
+    this.navCtrl.push(FriendProfilePage, {
       id: friendId
     });
+  }
+
+  getMessage(message: string): string {
+    const regex: RegExp = /( #[A-Za-z_]* )/g;
+    const expresion = message.match(regex);
+    if (expresion) {
+      const richContent = expresion[0].trim();
+      let newMessage = message.replace(/( #[A-Za-z_]* )/g, ` <a>${richContent}</a> `);
+      return newMessage;
+    } else {
+      return message;
+    }
+  }
+
+  showRichContent(artistOrBand: string) {
+    this.modalCtrl.create(RichContentComponent, { artistOrBand }).present();
   }
 
 }
