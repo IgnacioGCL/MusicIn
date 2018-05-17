@@ -3,12 +3,6 @@ import { ViewController } from 'ionic-angular/navigation/view-controller';
 import { ToastProvider } from '../../providers/toast/toast';
 import { MessagesProvider } from '../../providers/messages/messages';
 
-/**
- * Generated class for the WriteMessageComponent component.
- *
- * See https://angular.io/api/core/Component for more info on Angular
- * Components.
- */
 @Component({
   selector: 'write-message',
   templateUrl: 'write-message.html'

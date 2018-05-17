@@ -11,7 +11,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 export class MessagesProvider {
 
   urlRegex: RegExp = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_\+.~#?&//=]*)/g;
-  richContentRegex: RegExp = /( #[A-Za-z_]* )/g;
+  richContentRegex: RegExp = /( *#[A-Za-z_]* *)/g;
   userId: string;
 
 
