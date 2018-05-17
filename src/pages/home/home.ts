@@ -105,11 +105,11 @@ export class HomePage {
   }
 
   getMessage(message: string): string {
-    const regex: RegExp = /( #[A-Za-z_]* )/g;
+    const regex: RegExp = /( *#[A-Za-z_]* *)/g;
     const expresion = message.match(regex);
     if (expresion) {
       const richContent = expresion[0].trim();
-      let newMessage = message.replace(/( #[A-Za-z_]* )/g, ` <a>${richContent}</a> `);
+      let newMessage = message.replace(regex, ` <a>${richContent}</a> `);
       return newMessage;
     } else {
       return message;
