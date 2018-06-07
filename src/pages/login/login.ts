@@ -24,7 +24,7 @@ export class LoginPage {
     this.profile.userLogin(this.userLogin.email, this.userLogin.password)
       .then(() => {
         this.loader.dismiss();
-        this.navCtrl.setRoot(MenuPage);
+        // this.navCtrl.setRoot(MenuPage);
       })
       .catch(err => {
         console.log(err);
